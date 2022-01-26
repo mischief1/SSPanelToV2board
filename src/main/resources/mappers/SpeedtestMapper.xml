@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ojbk.mappers.SpeedtestMapper">
+  <resultMap id="BaseResultMap" type="com.ojbk.entity.Speedtest">
+    <!--@mbg.generated-->
+    <!--@Table speedtest-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="nodeid" jdbcType="INTEGER" property="nodeid" />
+    <result column="datetime" jdbcType="BIGINT" property="datetime" />
+    <result column="telecomping" jdbcType="LONGVARCHAR" property="telecomping" />
+    <result column="telecomeupload" jdbcType="LONGVARCHAR" property="telecomeupload" />
+    <result column="telecomedownload" jdbcType="LONGVARCHAR" property="telecomedownload" />
+    <result column="unicomping" jdbcType="LONGVARCHAR" property="unicomping" />
+    <result column="unicomupload" jdbcType="LONGVARCHAR" property="unicomupload" />
+    <result column="unicomdownload" jdbcType="LONGVARCHAR" property="unicomdownload" />
+    <result column="cmccping" jdbcType="LONGVARCHAR" property="cmccping" />
+    <result column="cmccupload" jdbcType="LONGVARCHAR" property="cmccupload" />
+    <result column="cmccdownload" jdbcType="LONGVARCHAR" property="cmccdownload" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, nodeid, `datetime`, telecomping, telecomeupload, telecomedownload, unicomping, 
+    unicomupload, unicomdownload, cmccping, cmccupload, cmccdownload
+  </sql>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update speedtest
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="nodeid = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.nodeid,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="`datetime` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.datetime,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="telecomping = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.telecomping,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="telecomeupload = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.telecomeupload,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="telecomedownload = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.telecomedownload,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="unicomping = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.unicomping,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="unicomupload = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.unicomupload,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="unicomdownload = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.unicomdownload,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="cmccping = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.cmccping,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="cmccupload = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.cmccupload,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="cmccdownload = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.cmccdownload,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update speedtest
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="nodeid = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.nodeid != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.nodeid,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`datetime` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.datetime != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.datetime,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="telecomping = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.telecomping != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.telecomping,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="telecomeupload = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.telecomeupload != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.telecomeupload,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="telecomedownload = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.telecomedownload != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.telecomedownload,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="unicomping = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.unicomping != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.unicomping,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="unicomupload = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.unicomupload != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.unicomupload,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="unicomdownload = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.unicomdownload != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.unicomdownload,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="cmccping = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.cmccping != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.cmccping,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="cmccupload = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.cmccupload != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.cmccupload,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="cmccdownload = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.cmccdownload != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.cmccdownload,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into speedtest
+    (nodeid, `datetime`, telecomping, telecomeupload, telecomedownload, unicomping, unicomupload, 
+      unicomdownload, cmccping, cmccupload, cmccdownload)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.nodeid,jdbcType=INTEGER}, #{item.datetime,jdbcType=BIGINT}, #{item.telecomping,jdbcType=LONGVARCHAR}, 
+        #{item.telecomeupload,jdbcType=LONGVARCHAR}, #{item.telecomedownload,jdbcType=LONGVARCHAR}, 
+        #{item.unicomping,jdbcType=LONGVARCHAR}, #{item.unicomupload,jdbcType=LONGVARCHAR}, 
+        #{item.unicomdownload,jdbcType=LONGVARCHAR}, #{item.cmccping,jdbcType=LONGVARCHAR}, 
+        #{item.cmccupload,jdbcType=LONGVARCHAR}, #{item.cmccdownload,jdbcType=LONGVARCHAR}
+        )
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.ojbk.entity.Speedtest" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into speedtest
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      nodeid,
+      `datetime`,
+      telecomping,
+      telecomeupload,
+      telecomedownload,
+      unicomping,
+      unicomupload,
+      unicomdownload,
+      cmccping,
+      cmccupload,
+      cmccdownload,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      #{nodeid,jdbcType=INTEGER},
+      #{datetime,jdbcType=BIGINT},
+      #{telecomping,jdbcType=LONGVARCHAR},
+      #{telecomeupload,jdbcType=LONGVARCHAR},
+      #{telecomedownload,jdbcType=LONGVARCHAR},
+      #{unicomping,jdbcType=LONGVARCHAR},
+      #{unicomupload,jdbcType=LONGVARCHAR},
+      #{unicomdownload,jdbcType=LONGVARCHAR},
+      #{cmccping,jdbcType=LONGVARCHAR},
+      #{cmccupload,jdbcType=LONGVARCHAR},
+      #{cmccdownload,jdbcType=LONGVARCHAR},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      nodeid = #{nodeid,jdbcType=INTEGER},
+      `datetime` = #{datetime,jdbcType=BIGINT},
+      telecomping = #{telecomping,jdbcType=LONGVARCHAR},
+      telecomeupload = #{telecomeupload,jdbcType=LONGVARCHAR},
+      telecomedownload = #{telecomedownload,jdbcType=LONGVARCHAR},
+      unicomping = #{unicomping,jdbcType=LONGVARCHAR},
+      unicomupload = #{unicomupload,jdbcType=LONGVARCHAR},
+      unicomdownload = #{unicomdownload,jdbcType=LONGVARCHAR},
+      cmccping = #{cmccping,jdbcType=LONGVARCHAR},
+      cmccupload = #{cmccupload,jdbcType=LONGVARCHAR},
+      cmccdownload = #{cmccdownload,jdbcType=LONGVARCHAR},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.ojbk.entity.Speedtest" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into speedtest
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="nodeid != null">
+        nodeid,
+      </if>
+      <if test="datetime != null">
+        `datetime`,
+      </if>
+      <if test="telecomping != null">
+        telecomping,
+      </if>
+      <if test="telecomeupload != null">
+        telecomeupload,
+      </if>
+      <if test="telecomedownload != null">
+        telecomedownload,
+      </if>
+      <if test="unicomping != null">
+        unicomping,
+      </if>
+      <if test="unicomupload != null">
+        unicomupload,
+      </if>
+      <if test="unicomdownload != null">
+        unicomdownload,
+      </if>
+      <if test="cmccping != null">
+        cmccping,
+      </if>
+      <if test="cmccupload != null">
+        cmccupload,
+      </if>
+      <if test="cmccdownload != null">
+        cmccdownload,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="nodeid != null">
+        #{nodeid,jdbcType=INTEGER},
+      </if>
+      <if test="datetime != null">
+        #{datetime,jdbcType=BIGINT},
+      </if>
+      <if test="telecomping != null">
+        #{telecomping,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="telecomeupload != null">
+        #{telecomeupload,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="telecomedownload != null">
+        #{telecomedownload,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="unicomping != null">
+        #{unicomping,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="unicomupload != null">
+        #{unicomupload,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="unicomdownload != null">
+        #{unicomdownload,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="cmccping != null">
+        #{cmccping,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="cmccupload != null">
+        #{cmccupload,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="cmccdownload != null">
+        #{cmccdownload,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      <if test="nodeid != null">
+        nodeid = #{nodeid,jdbcType=INTEGER},
+      </if>
+      <if test="datetime != null">
+        `datetime` = #{datetime,jdbcType=BIGINT},
+      </if>
+      <if test="telecomping != null">
+        telecomping = #{telecomping,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="telecomeupload != null">
+        telecomeupload = #{telecomeupload,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="telecomedownload != null">
+        telecomedownload = #{telecomedownload,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="unicomping != null">
+        unicomping = #{unicomping,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="unicomupload != null">
+        unicomupload = #{unicomupload,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="unicomdownload != null">
+        unicomdownload = #{unicomdownload,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="cmccping != null">
+        cmccping = #{cmccping,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="cmccupload != null">
+        cmccupload = #{cmccupload,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="cmccdownload != null">
+        cmccdownload = #{cmccdownload,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

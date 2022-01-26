@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ojbk.mappers.CodeMapper">
+  <resultMap id="BaseResultMap" type="com.ojbk.entity.Code">
+    <!--@mbg.generated-->
+    <!--@Table code-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="code" jdbcType="LONGVARCHAR" property="code" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="number" jdbcType="DECIMAL" property="number" />
+    <result column="isused" jdbcType="INTEGER" property="isused" />
+    <result column="userid" jdbcType="BIGINT" property="userid" />
+    <result column="usedatetime" jdbcType="TIMESTAMP" property="usedatetime" />
+    <result column="tradeno" jdbcType="VARCHAR" property="tradeno" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, code, `type`, `number`, isused, userid, usedatetime, tradeno
+  </sql>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update code
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="code = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.code,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="`type` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.type,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="`number` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.number,jdbcType=DECIMAL}
+        </foreach>
+      </trim>
+      <trim prefix="isused = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.isused,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="userid = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.userid,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="usedatetime = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.usedatetime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="tradeno = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.tradeno,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update code
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="code = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.code != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.code,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`type` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.type != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.type,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`number` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.number != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.number,jdbcType=DECIMAL}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="isused = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.isused != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.isused,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="userid = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.userid != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.userid,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="usedatetime = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.usedatetime != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.usedatetime,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="tradeno = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.tradeno != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.tradeno,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into code
+    (code, `type`, `number`, isused, userid, usedatetime, tradeno)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.code,jdbcType=LONGVARCHAR}, #{item.type,jdbcType=INTEGER}, #{item.number,jdbcType=DECIMAL}, 
+        #{item.isused,jdbcType=INTEGER}, #{item.userid,jdbcType=BIGINT}, #{item.usedatetime,jdbcType=TIMESTAMP}, 
+        #{item.tradeno,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.ojbk.entity.Code" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into code
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      code,
+      `type`,
+      `number`,
+      isused,
+      userid,
+      usedatetime,
+      tradeno,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      #{code,jdbcType=LONGVARCHAR},
+      #{type,jdbcType=INTEGER},
+      #{number,jdbcType=DECIMAL},
+      #{isused,jdbcType=INTEGER},
+      #{userid,jdbcType=BIGINT},
+      #{usedatetime,jdbcType=TIMESTAMP},
+      #{tradeno,jdbcType=VARCHAR},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      code = #{code,jdbcType=LONGVARCHAR},
+      `type` = #{type,jdbcType=INTEGER},
+      `number` = #{number,jdbcType=DECIMAL},
+      isused = #{isused,jdbcType=INTEGER},
+      userid = #{userid,jdbcType=BIGINT},
+      usedatetime = #{usedatetime,jdbcType=TIMESTAMP},
+      tradeno = #{tradeno,jdbcType=VARCHAR},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.ojbk.entity.Code" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into code
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="number != null">
+        `number`,
+      </if>
+      <if test="isused != null">
+        isused,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="usedatetime != null">
+        usedatetime,
+      </if>
+      <if test="tradeno != null">
+        tradeno,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=DECIMAL},
+      </if>
+      <if test="isused != null">
+        #{isused,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="usedatetime != null">
+        #{usedatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tradeno != null">
+        #{tradeno,jdbcType=VARCHAR},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="number != null">
+        `number` = #{number,jdbcType=DECIMAL},
+      </if>
+      <if test="isused != null">
+        isused = #{isused,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="usedatetime != null">
+        usedatetime = #{usedatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tradeno != null">
+        tradeno = #{tradeno,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

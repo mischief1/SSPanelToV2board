@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ojbk.mappers.SsNodeInfoMapper">
+  <resultMap id="BaseResultMap" type="com.ojbk.entity.SsNodeInfo">
+    <!--@mbg.generated-->
+    <!--@Table ss_node_info-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="node_id" jdbcType="INTEGER" property="nodeId" />
+    <result column="uptime" jdbcType="FLOAT" property="uptime" />
+    <result column="load" jdbcType="VARCHAR" property="load" />
+    <result column="log_time" jdbcType="INTEGER" property="logTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, node_id, uptime, `load`, log_time
+  </sql>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update ss_node_info
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="node_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.nodeId,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="uptime = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.uptime,jdbcType=FLOAT}
+        </foreach>
+      </trim>
+      <trim prefix="`load` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.load,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="log_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.logTime,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update ss_node_info
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="node_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.nodeId != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.nodeId,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="uptime = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.uptime != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.uptime,jdbcType=FLOAT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`load` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.load != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.load,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="log_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.logTime != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.logTime,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into ss_node_info
+    (node_id, uptime, `load`, log_time)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.nodeId,jdbcType=INTEGER}, #{item.uptime,jdbcType=FLOAT}, #{item.load,jdbcType=VARCHAR}, 
+        #{item.logTime,jdbcType=INTEGER})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.ojbk.entity.SsNodeInfo" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into ss_node_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      node_id,
+      uptime,
+      `load`,
+      log_time,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      #{nodeId,jdbcType=INTEGER},
+      #{uptime,jdbcType=FLOAT},
+      #{load,jdbcType=VARCHAR},
+      #{logTime,jdbcType=INTEGER},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      node_id = #{nodeId,jdbcType=INTEGER},
+      uptime = #{uptime,jdbcType=FLOAT},
+      `load` = #{load,jdbcType=VARCHAR},
+      log_time = #{logTime,jdbcType=INTEGER},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.ojbk.entity.SsNodeInfo" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into ss_node_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="nodeId != null">
+        node_id,
+      </if>
+      <if test="uptime != null">
+        uptime,
+      </if>
+      <if test="load != null">
+        `load`,
+      </if>
+      <if test="logTime != null">
+        log_time,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="nodeId != null">
+        #{nodeId,jdbcType=INTEGER},
+      </if>
+      <if test="uptime != null">
+        #{uptime,jdbcType=FLOAT},
+      </if>
+      <if test="load != null">
+        #{load,jdbcType=VARCHAR},
+      </if>
+      <if test="logTime != null">
+        #{logTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="nodeId != null">
+        node_id = #{nodeId,jdbcType=INTEGER},
+      </if>
+      <if test="uptime != null">
+        uptime = #{uptime,jdbcType=FLOAT},
+      </if>
+      <if test="load != null">
+        `load` = #{load,jdbcType=VARCHAR},
+      </if>
+      <if test="logTime != null">
+        log_time = #{logTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

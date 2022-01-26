@@ -1,0 +1,623 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ojbk.mappers.V2OrderMapper">
+  <resultMap id="BaseResultMap" type="com.ojbk.entity.V2Order">
+    <!--@mbg.generated-->
+    <!--@Table v2_order-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="invite_user_id" jdbcType="INTEGER" property="inviteUserId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="plan_id" jdbcType="INTEGER" property="planId" />
+    <result column="coupon_id" jdbcType="INTEGER" property="couponId" />
+    <result column="payment_id" jdbcType="INTEGER" property="paymentId" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="cycle" jdbcType="VARCHAR" property="cycle" />
+    <result column="trade_no" jdbcType="VARCHAR" property="tradeNo" />
+    <result column="callback_no" jdbcType="VARCHAR" property="callbackNo" />
+    <result column="total_amount" jdbcType="INTEGER" property="totalAmount" />
+    <result column="discount_amount" jdbcType="INTEGER" property="discountAmount" />
+    <result column="surplus_amount" jdbcType="INTEGER" property="surplusAmount" />
+    <result column="refund_amount" jdbcType="INTEGER" property="refundAmount" />
+    <result column="balance_amount" jdbcType="INTEGER" property="balanceAmount" />
+    <result column="surplus_order_ids" jdbcType="LONGVARCHAR" property="surplusOrderIds" />
+    <result column="status" jdbcType="BOOLEAN" property="status" />
+    <result column="commission_status" jdbcType="BOOLEAN" property="commissionStatus" />
+    <result column="commission_balance" jdbcType="INTEGER" property="commissionBalance" />
+    <result column="paid_at" jdbcType="INTEGER" property="paidAt" />
+    <result column="created_at" jdbcType="INTEGER" property="createdAt" />
+    <result column="updated_at" jdbcType="INTEGER" property="updatedAt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, invite_user_id, user_id, plan_id, coupon_id, payment_id, `type`, `cycle`, trade_no, 
+    callback_no, total_amount, discount_amount, surplus_amount, refund_amount, balance_amount, 
+    surplus_order_ids, `status`, commission_status, commission_balance, paid_at, created_at, 
+    updated_at
+  </sql>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update v2_order
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="invite_user_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.inviteUserId,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="user_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.userId,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="plan_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.planId,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="coupon_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.couponId,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="payment_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.paymentId,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="`type` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.type,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="`cycle` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.cycle,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="trade_no = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.tradeNo,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="callback_no = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.callbackNo,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="total_amount = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.totalAmount,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="discount_amount = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.discountAmount,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="surplus_amount = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.surplusAmount,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="refund_amount = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.refundAmount,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="balance_amount = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.balanceAmount,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="surplus_order_ids = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.surplusOrderIds,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="`status` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.status,jdbcType=BOOLEAN}
+        </foreach>
+      </trim>
+      <trim prefix="commission_status = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.commissionStatus,jdbcType=BOOLEAN}
+        </foreach>
+      </trim>
+      <trim prefix="commission_balance = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.commissionBalance,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="paid_at = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.paidAt,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="created_at = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.createdAt,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="updated_at = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.updatedAt,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update v2_order
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="invite_user_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.inviteUserId != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.inviteUserId,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="user_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.userId != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.userId,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="plan_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.planId != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.planId,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="coupon_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.couponId != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.couponId,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="payment_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.paymentId != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.paymentId,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`type` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.type != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.type,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`cycle` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.cycle != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.cycle,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="trade_no = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.tradeNo != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.tradeNo,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="callback_no = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.callbackNo != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.callbackNo,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="total_amount = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.totalAmount != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.totalAmount,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="discount_amount = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.discountAmount != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.discountAmount,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="surplus_amount = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.surplusAmount != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.surplusAmount,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="refund_amount = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.refundAmount != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.refundAmount,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="balance_amount = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.balanceAmount != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.balanceAmount,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="surplus_order_ids = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.surplusOrderIds != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.surplusOrderIds,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`status` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.status != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.status,jdbcType=BOOLEAN}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="commission_status = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.commissionStatus != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.commissionStatus,jdbcType=BOOLEAN}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="commission_balance = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.commissionBalance != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.commissionBalance,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="paid_at = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.paidAt != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.paidAt,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="created_at = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.createdAt != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.createdAt,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="updated_at = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.updatedAt != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.updatedAt,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into v2_order
+    (invite_user_id, user_id, plan_id, coupon_id, payment_id, `type`, `cycle`, trade_no, 
+      callback_no, total_amount, discount_amount, surplus_amount, refund_amount, balance_amount, 
+      surplus_order_ids, `status`, commission_status, commission_balance, paid_at, created_at, 
+      updated_at)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.inviteUserId,jdbcType=INTEGER}, #{item.userId,jdbcType=INTEGER}, #{item.planId,jdbcType=INTEGER}, 
+        #{item.couponId,jdbcType=INTEGER}, #{item.paymentId,jdbcType=INTEGER}, #{item.type,jdbcType=INTEGER}, 
+        #{item.cycle,jdbcType=VARCHAR}, #{item.tradeNo,jdbcType=VARCHAR}, #{item.callbackNo,jdbcType=VARCHAR}, 
+        #{item.totalAmount,jdbcType=INTEGER}, #{item.discountAmount,jdbcType=INTEGER}, 
+        #{item.surplusAmount,jdbcType=INTEGER}, #{item.refundAmount,jdbcType=INTEGER}, 
+        #{item.balanceAmount,jdbcType=INTEGER}, #{item.surplusOrderIds,jdbcType=LONGVARCHAR}, 
+        #{item.status,jdbcType=BOOLEAN}, #{item.commissionStatus,jdbcType=BOOLEAN}, #{item.commissionBalance,jdbcType=INTEGER}, 
+        #{item.paidAt,jdbcType=INTEGER}, #{item.createdAt,jdbcType=INTEGER}, #{item.updatedAt,jdbcType=INTEGER}
+        )
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.ojbk.entity.V2Order" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into v2_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      invite_user_id,
+      user_id,
+      plan_id,
+      coupon_id,
+      payment_id,
+      `type`,
+      `cycle`,
+      trade_no,
+      callback_no,
+      total_amount,
+      discount_amount,
+      surplus_amount,
+      refund_amount,
+      balance_amount,
+      surplus_order_ids,
+      `status`,
+      commission_status,
+      commission_balance,
+      paid_at,
+      created_at,
+      updated_at,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      #{inviteUserId,jdbcType=INTEGER},
+      #{userId,jdbcType=INTEGER},
+      #{planId,jdbcType=INTEGER},
+      #{couponId,jdbcType=INTEGER},
+      #{paymentId,jdbcType=INTEGER},
+      #{type,jdbcType=INTEGER},
+      #{cycle,jdbcType=VARCHAR},
+      #{tradeNo,jdbcType=VARCHAR},
+      #{callbackNo,jdbcType=VARCHAR},
+      #{totalAmount,jdbcType=INTEGER},
+      #{discountAmount,jdbcType=INTEGER},
+      #{surplusAmount,jdbcType=INTEGER},
+      #{refundAmount,jdbcType=INTEGER},
+      #{balanceAmount,jdbcType=INTEGER},
+      #{surplusOrderIds,jdbcType=LONGVARCHAR},
+      #{status,jdbcType=BOOLEAN},
+      #{commissionStatus,jdbcType=BOOLEAN},
+      #{commissionBalance,jdbcType=INTEGER},
+      #{paidAt,jdbcType=INTEGER},
+      #{createdAt,jdbcType=INTEGER},
+      #{updatedAt,jdbcType=INTEGER},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      invite_user_id = #{inviteUserId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      plan_id = #{planId,jdbcType=INTEGER},
+      coupon_id = #{couponId,jdbcType=INTEGER},
+      payment_id = #{paymentId,jdbcType=INTEGER},
+      `type` = #{type,jdbcType=INTEGER},
+      `cycle` = #{cycle,jdbcType=VARCHAR},
+      trade_no = #{tradeNo,jdbcType=VARCHAR},
+      callback_no = #{callbackNo,jdbcType=VARCHAR},
+      total_amount = #{totalAmount,jdbcType=INTEGER},
+      discount_amount = #{discountAmount,jdbcType=INTEGER},
+      surplus_amount = #{surplusAmount,jdbcType=INTEGER},
+      refund_amount = #{refundAmount,jdbcType=INTEGER},
+      balance_amount = #{balanceAmount,jdbcType=INTEGER},
+      surplus_order_ids = #{surplusOrderIds,jdbcType=LONGVARCHAR},
+      `status` = #{status,jdbcType=BOOLEAN},
+      commission_status = #{commissionStatus,jdbcType=BOOLEAN},
+      commission_balance = #{commissionBalance,jdbcType=INTEGER},
+      paid_at = #{paidAt,jdbcType=INTEGER},
+      created_at = #{createdAt,jdbcType=INTEGER},
+      updated_at = #{updatedAt,jdbcType=INTEGER},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.ojbk.entity.V2Order" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into v2_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="inviteUserId != null">
+        invite_user_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="planId != null">
+        plan_id,
+      </if>
+      <if test="couponId != null">
+        coupon_id,
+      </if>
+      <if test="paymentId != null">
+        payment_id,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="cycle != null">
+        `cycle`,
+      </if>
+      <if test="tradeNo != null">
+        trade_no,
+      </if>
+      <if test="callbackNo != null">
+        callback_no,
+      </if>
+      <if test="totalAmount != null">
+        total_amount,
+      </if>
+      <if test="discountAmount != null">
+        discount_amount,
+      </if>
+      <if test="surplusAmount != null">
+        surplus_amount,
+      </if>
+      <if test="refundAmount != null">
+        refund_amount,
+      </if>
+      <if test="balanceAmount != null">
+        balance_amount,
+      </if>
+      <if test="surplusOrderIds != null">
+        surplus_order_ids,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="commissionStatus != null">
+        commission_status,
+      </if>
+      <if test="commissionBalance != null">
+        commission_balance,
+      </if>
+      <if test="paidAt != null">
+        paid_at,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="inviteUserId != null">
+        #{inviteUserId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="planId != null">
+        #{planId,jdbcType=INTEGER},
+      </if>
+      <if test="couponId != null">
+        #{couponId,jdbcType=INTEGER},
+      </if>
+      <if test="paymentId != null">
+        #{paymentId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="cycle != null">
+        #{cycle,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeNo != null">
+        #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="callbackNo != null">
+        #{callbackNo,jdbcType=VARCHAR},
+      </if>
+      <if test="totalAmount != null">
+        #{totalAmount,jdbcType=INTEGER},
+      </if>
+      <if test="discountAmount != null">
+        #{discountAmount,jdbcType=INTEGER},
+      </if>
+      <if test="surplusAmount != null">
+        #{surplusAmount,jdbcType=INTEGER},
+      </if>
+      <if test="refundAmount != null">
+        #{refundAmount,jdbcType=INTEGER},
+      </if>
+      <if test="balanceAmount != null">
+        #{balanceAmount,jdbcType=INTEGER},
+      </if>
+      <if test="surplusOrderIds != null">
+        #{surplusOrderIds,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=BOOLEAN},
+      </if>
+      <if test="commissionStatus != null">
+        #{commissionStatus,jdbcType=BOOLEAN},
+      </if>
+      <if test="commissionBalance != null">
+        #{commissionBalance,jdbcType=INTEGER},
+      </if>
+      <if test="paidAt != null">
+        #{paidAt,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=INTEGER},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=INTEGER},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="inviteUserId != null">
+        invite_user_id = #{inviteUserId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="planId != null">
+        plan_id = #{planId,jdbcType=INTEGER},
+      </if>
+      <if test="couponId != null">
+        coupon_id = #{couponId,jdbcType=INTEGER},
+      </if>
+      <if test="paymentId != null">
+        payment_id = #{paymentId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="cycle != null">
+        `cycle` = #{cycle,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeNo != null">
+        trade_no = #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="callbackNo != null">
+        callback_no = #{callbackNo,jdbcType=VARCHAR},
+      </if>
+      <if test="totalAmount != null">
+        total_amount = #{totalAmount,jdbcType=INTEGER},
+      </if>
+      <if test="discountAmount != null">
+        discount_amount = #{discountAmount,jdbcType=INTEGER},
+      </if>
+      <if test="surplusAmount != null">
+        surplus_amount = #{surplusAmount,jdbcType=INTEGER},
+      </if>
+      <if test="refundAmount != null">
+        refund_amount = #{refundAmount,jdbcType=INTEGER},
+      </if>
+      <if test="balanceAmount != null">
+        balance_amount = #{balanceAmount,jdbcType=INTEGER},
+      </if>
+      <if test="surplusOrderIds != null">
+        surplus_order_ids = #{surplusOrderIds,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=BOOLEAN},
+      </if>
+      <if test="commissionStatus != null">
+        commission_status = #{commissionStatus,jdbcType=BOOLEAN},
+      </if>
+      <if test="commissionBalance != null">
+        commission_balance = #{commissionBalance,jdbcType=INTEGER},
+      </if>
+      <if test="paidAt != null">
+        paid_at = #{paidAt,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=INTEGER},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

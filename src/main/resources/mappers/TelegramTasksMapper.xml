@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ojbk.mappers.TelegramTasksMapper">
+  <resultMap id="BaseResultMap" type="com.ojbk.entity.TelegramTasks">
+    <!--@mbg.generated-->
+    <!--@Table telegram_tasks-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="chatid" jdbcType="VARCHAR" property="chatid" />
+    <result column="messageid" jdbcType="VARCHAR" property="messageid" />
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+    <result column="process" jdbcType="VARCHAR" property="process" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="tguserid" jdbcType="VARCHAR" property="tguserid" />
+    <result column="executetime" jdbcType="BIGINT" property="executetime" />
+    <result column="datetime" jdbcType="BIGINT" property="datetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, `type`, `status`, chatid, messageid, content, `process`, userid, tguserid, executetime, 
+    `datetime`
+  </sql>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update telegram_tasks
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="`type` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.type,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="`status` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.status,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="chatid = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.chatid,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="messageid = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.messageid,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="content = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.content,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="`process` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.process,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="userid = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.userid,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="tguserid = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.tguserid,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="executetime = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.executetime,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="`datetime` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.datetime,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update telegram_tasks
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="`type` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.type != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.type,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`status` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.status != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.status,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="chatid = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.chatid != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.chatid,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="messageid = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.messageid != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.messageid,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="content = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.content != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.content,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`process` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.process != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.process,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="userid = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.userid != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.userid,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="tguserid = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.tguserid != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.tguserid,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="executetime = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.executetime != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.executetime,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`datetime` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.datetime != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.datetime,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into telegram_tasks
+    (`type`, `status`, chatid, messageid, content, `process`, userid, tguserid, executetime, 
+      `datetime`)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.type,jdbcType=INTEGER}, #{item.status,jdbcType=INTEGER}, #{item.chatid,jdbcType=VARCHAR}, 
+        #{item.messageid,jdbcType=VARCHAR}, #{item.content,jdbcType=LONGVARCHAR}, #{item.process,jdbcType=VARCHAR}, 
+        #{item.userid,jdbcType=INTEGER}, #{item.tguserid,jdbcType=VARCHAR}, #{item.executetime,jdbcType=BIGINT}, 
+        #{item.datetime,jdbcType=BIGINT})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.ojbk.entity.TelegramTasks" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into telegram_tasks
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      `type`,
+      `status`,
+      chatid,
+      messageid,
+      content,
+      `process`,
+      userid,
+      tguserid,
+      executetime,
+      `datetime`,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      #{type,jdbcType=INTEGER},
+      #{status,jdbcType=INTEGER},
+      #{chatid,jdbcType=VARCHAR},
+      #{messageid,jdbcType=VARCHAR},
+      #{content,jdbcType=LONGVARCHAR},
+      #{process,jdbcType=VARCHAR},
+      #{userid,jdbcType=INTEGER},
+      #{tguserid,jdbcType=VARCHAR},
+      #{executetime,jdbcType=BIGINT},
+      #{datetime,jdbcType=BIGINT},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      `type` = #{type,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=INTEGER},
+      chatid = #{chatid,jdbcType=VARCHAR},
+      messageid = #{messageid,jdbcType=VARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR},
+      `process` = #{process,jdbcType=VARCHAR},
+      userid = #{userid,jdbcType=INTEGER},
+      tguserid = #{tguserid,jdbcType=VARCHAR},
+      executetime = #{executetime,jdbcType=BIGINT},
+      `datetime` = #{datetime,jdbcType=BIGINT},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.ojbk.entity.TelegramTasks" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into telegram_tasks
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="chatid != null">
+        chatid,
+      </if>
+      <if test="messageid != null">
+        messageid,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="process != null">
+        `process`,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="tguserid != null">
+        tguserid,
+      </if>
+      <if test="executetime != null">
+        executetime,
+      </if>
+      <if test="datetime != null">
+        `datetime`,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="chatid != null">
+        #{chatid,jdbcType=VARCHAR},
+      </if>
+      <if test="messageid != null">
+        #{messageid,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="process != null">
+        #{process,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="tguserid != null">
+        #{tguserid,jdbcType=VARCHAR},
+      </if>
+      <if test="executetime != null">
+        #{executetime,jdbcType=BIGINT},
+      </if>
+      <if test="datetime != null">
+        #{datetime,jdbcType=BIGINT},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="chatid != null">
+        chatid = #{chatid,jdbcType=VARCHAR},
+      </if>
+      <if test="messageid != null">
+        messageid = #{messageid,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="process != null">
+        `process` = #{process,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="tguserid != null">
+        tguserid = #{tguserid,jdbcType=VARCHAR},
+      </if>
+      <if test="executetime != null">
+        executetime = #{executetime,jdbcType=BIGINT},
+      </if>
+      <if test="datetime != null">
+        `datetime` = #{datetime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

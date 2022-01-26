@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ojbk.mappers.RelayMapper">
+  <resultMap id="BaseResultMap" type="com.ojbk.entity.Relay">
+    <!--@mbg.generated-->
+    <!--@Table relay-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="source_node_id" jdbcType="BIGINT" property="sourceNodeId" />
+    <result column="dist_node_id" jdbcType="BIGINT" property="distNodeId" />
+    <result column="dist_ip" jdbcType="LONGVARCHAR" property="distIp" />
+    <result column="port" jdbcType="INTEGER" property="port" />
+    <result column="priority" jdbcType="INTEGER" property="priority" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, user_id, source_node_id, dist_node_id, dist_ip, port, priority
+  </sql>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update relay
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="user_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.userId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="source_node_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.sourceNodeId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="dist_node_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.distNodeId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="dist_ip = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.distIp,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="port = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.port,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="priority = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.priority,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update relay
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="user_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.userId != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.userId,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="source_node_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.sourceNodeId != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.sourceNodeId,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="dist_node_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.distNodeId != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.distNodeId,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="dist_ip = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.distIp != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.distIp,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="port = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.port != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.port,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="priority = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.priority != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.priority,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into relay
+    (user_id, source_node_id, dist_node_id, dist_ip, port, priority)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.userId,jdbcType=BIGINT}, #{item.sourceNodeId,jdbcType=BIGINT}, #{item.distNodeId,jdbcType=BIGINT}, 
+        #{item.distIp,jdbcType=LONGVARCHAR}, #{item.port,jdbcType=INTEGER}, #{item.priority,jdbcType=INTEGER}
+        )
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.ojbk.entity.Relay" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into relay
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      user_id,
+      source_node_id,
+      dist_node_id,
+      dist_ip,
+      port,
+      priority,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      #{userId,jdbcType=BIGINT},
+      #{sourceNodeId,jdbcType=BIGINT},
+      #{distNodeId,jdbcType=BIGINT},
+      #{distIp,jdbcType=LONGVARCHAR},
+      #{port,jdbcType=INTEGER},
+      #{priority,jdbcType=INTEGER},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      user_id = #{userId,jdbcType=BIGINT},
+      source_node_id = #{sourceNodeId,jdbcType=BIGINT},
+      dist_node_id = #{distNodeId,jdbcType=BIGINT},
+      dist_ip = #{distIp,jdbcType=LONGVARCHAR},
+      port = #{port,jdbcType=INTEGER},
+      priority = #{priority,jdbcType=INTEGER},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.ojbk.entity.Relay" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into relay
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="sourceNodeId != null">
+        source_node_id,
+      </if>
+      <if test="distNodeId != null">
+        dist_node_id,
+      </if>
+      <if test="distIp != null">
+        dist_ip,
+      </if>
+      <if test="port != null">
+        port,
+      </if>
+      <if test="priority != null">
+        priority,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="sourceNodeId != null">
+        #{sourceNodeId,jdbcType=BIGINT},
+      </if>
+      <if test="distNodeId != null">
+        #{distNodeId,jdbcType=BIGINT},
+      </if>
+      <if test="distIp != null">
+        #{distIp,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="port != null">
+        #{port,jdbcType=INTEGER},
+      </if>
+      <if test="priority != null">
+        #{priority,jdbcType=INTEGER},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="sourceNodeId != null">
+        source_node_id = #{sourceNodeId,jdbcType=BIGINT},
+      </if>
+      <if test="distNodeId != null">
+        dist_node_id = #{distNodeId,jdbcType=BIGINT},
+      </if>
+      <if test="distIp != null">
+        dist_ip = #{distIp,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="port != null">
+        port = #{port,jdbcType=INTEGER},
+      </if>
+      <if test="priority != null">
+        priority = #{priority,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

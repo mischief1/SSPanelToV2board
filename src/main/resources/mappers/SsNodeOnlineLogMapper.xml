@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ojbk.mappers.SsNodeOnlineLogMapper">
+  <resultMap id="BaseResultMap" type="com.ojbk.entity.SsNodeOnlineLog">
+    <!--@mbg.generated-->
+    <!--@Table ss_node_online_log-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="node_id" jdbcType="INTEGER" property="nodeId" />
+    <result column="online_user" jdbcType="INTEGER" property="onlineUser" />
+    <result column="log_time" jdbcType="INTEGER" property="logTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, node_id, online_user, log_time
+  </sql>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update ss_node_online_log
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="node_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.nodeId,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="online_user = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.onlineUser,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="log_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.logTime,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update ss_node_online_log
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="node_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.nodeId != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.nodeId,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="online_user = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.onlineUser != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.onlineUser,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="log_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.logTime != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.logTime,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into ss_node_online_log
+    (node_id, online_user, log_time)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.nodeId,jdbcType=INTEGER}, #{item.onlineUser,jdbcType=INTEGER}, #{item.logTime,jdbcType=INTEGER}
+        )
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.ojbk.entity.SsNodeOnlineLog" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into ss_node_online_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      node_id,
+      online_user,
+      log_time,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      #{nodeId,jdbcType=INTEGER},
+      #{onlineUser,jdbcType=INTEGER},
+      #{logTime,jdbcType=INTEGER},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      node_id = #{nodeId,jdbcType=INTEGER},
+      online_user = #{onlineUser,jdbcType=INTEGER},
+      log_time = #{logTime,jdbcType=INTEGER},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.ojbk.entity.SsNodeOnlineLog" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into ss_node_online_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="nodeId != null">
+        node_id,
+      </if>
+      <if test="onlineUser != null">
+        online_user,
+      </if>
+      <if test="logTime != null">
+        log_time,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="nodeId != null">
+        #{nodeId,jdbcType=INTEGER},
+      </if>
+      <if test="onlineUser != null">
+        #{onlineUser,jdbcType=INTEGER},
+      </if>
+      <if test="logTime != null">
+        #{logTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="nodeId != null">
+        node_id = #{nodeId,jdbcType=INTEGER},
+      </if>
+      <if test="onlineUser != null">
+        online_user = #{onlineUser,jdbcType=INTEGER},
+      </if>
+      <if test="logTime != null">
+        log_time = #{logTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

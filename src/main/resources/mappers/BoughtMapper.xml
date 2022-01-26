@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ojbk.mappers.BoughtMapper">
+  <resultMap id="BaseResultMap" type="com.ojbk.entity.Bought">
+    <!--@mbg.generated-->
+    <!--@Table bought-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="userid" jdbcType="BIGINT" property="userid" />
+    <result column="shopid" jdbcType="BIGINT" property="shopid" />
+    <result column="datetime" jdbcType="BIGINT" property="datetime" />
+    <result column="renew" jdbcType="BIGINT" property="renew" />
+    <result column="coupon" jdbcType="LONGVARCHAR" property="coupon" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, userid, shopid, `datetime`, renew, coupon, price
+  </sql>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update bought
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="userid = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.userid,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="shopid = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.shopid,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="`datetime` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.datetime,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="renew = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.renew,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="coupon = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.coupon,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="price = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.price,jdbcType=DECIMAL}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update bought
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="userid = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.userid != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.userid,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="shopid = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.shopid != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.shopid,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`datetime` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.datetime != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.datetime,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="renew = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.renew != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.renew,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="coupon = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.coupon != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.coupon,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="price = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.price != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.price,jdbcType=DECIMAL}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into bought
+    (userid, shopid, `datetime`, renew, coupon, price)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.userid,jdbcType=BIGINT}, #{item.shopid,jdbcType=BIGINT}, #{item.datetime,jdbcType=BIGINT}, 
+        #{item.renew,jdbcType=BIGINT}, #{item.coupon,jdbcType=LONGVARCHAR}, #{item.price,jdbcType=DECIMAL}
+        )
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.ojbk.entity.Bought" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into bought
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      userid,
+      shopid,
+      `datetime`,
+      renew,
+      coupon,
+      price,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      #{userid,jdbcType=BIGINT},
+      #{shopid,jdbcType=BIGINT},
+      #{datetime,jdbcType=BIGINT},
+      #{renew,jdbcType=BIGINT},
+      #{coupon,jdbcType=LONGVARCHAR},
+      #{price,jdbcType=DECIMAL},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      userid = #{userid,jdbcType=BIGINT},
+      shopid = #{shopid,jdbcType=BIGINT},
+      `datetime` = #{datetime,jdbcType=BIGINT},
+      renew = #{renew,jdbcType=BIGINT},
+      coupon = #{coupon,jdbcType=LONGVARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.ojbk.entity.Bought" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into bought
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="shopid != null">
+        shopid,
+      </if>
+      <if test="datetime != null">
+        `datetime`,
+      </if>
+      <if test="renew != null">
+        renew,
+      </if>
+      <if test="coupon != null">
+        coupon,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="shopid != null">
+        #{shopid,jdbcType=BIGINT},
+      </if>
+      <if test="datetime != null">
+        #{datetime,jdbcType=BIGINT},
+      </if>
+      <if test="renew != null">
+        #{renew,jdbcType=BIGINT},
+      </if>
+      <if test="coupon != null">
+        #{coupon,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="shopid != null">
+        shopid = #{shopid,jdbcType=BIGINT},
+      </if>
+      <if test="datetime != null">
+        `datetime` = #{datetime,jdbcType=BIGINT},
+      </if>
+      <if test="renew != null">
+        renew = #{renew,jdbcType=BIGINT},
+      </if>
+      <if test="coupon != null">
+        coupon = #{coupon,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+</mapper>

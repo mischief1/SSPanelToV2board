@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ojbk.mappers.GconfigMapper">
+  <resultMap id="BaseResultMap" type="com.ojbk.entity.Gconfig">
+    <!--@mbg.generated-->
+    <!--@Table gconfig-->
+    <id column="key" jdbcType="VARCHAR" property="key" />
+    <result column="value" jdbcType="LONGVARCHAR" property="value" />
+    <result column="oldvalue" jdbcType="LONGVARCHAR" property="oldvalue" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="comment" jdbcType="LONGVARCHAR" property="comment" />
+    <result column="operator_id" jdbcType="INTEGER" property="operatorId" />
+    <result column="operator_name" jdbcType="VARCHAR" property="operatorName" />
+    <result column="operator_email" jdbcType="VARCHAR" property="operatorEmail" />
+    <result column="last_update" jdbcType="BIGINT" property="lastUpdate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    `key`, `value`, oldvalue, `name`, `comment`, operator_id, operator_name, operator_email, 
+    last_update
+  </sql>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update gconfig
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="`value` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when `key` = #{item.key,jdbcType=VARCHAR} then #{item.value,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="oldvalue = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when `key` = #{item.key,jdbcType=VARCHAR} then #{item.oldvalue,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="`name` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when `key` = #{item.key,jdbcType=VARCHAR} then #{item.name,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="`comment` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when `key` = #{item.key,jdbcType=VARCHAR} then #{item.comment,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="operator_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when `key` = #{item.key,jdbcType=VARCHAR} then #{item.operatorId,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="operator_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when `key` = #{item.key,jdbcType=VARCHAR} then #{item.operatorName,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="operator_email = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when `key` = #{item.key,jdbcType=VARCHAR} then #{item.operatorEmail,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="last_update = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when `key` = #{item.key,jdbcType=VARCHAR} then #{item.lastUpdate,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+    </trim>
+    where `key` in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.key,jdbcType=VARCHAR}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update gconfig
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="`value` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.value != null">
+            when `key` = #{item.key,jdbcType=VARCHAR} then #{item.value,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="oldvalue = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.oldvalue != null">
+            when `key` = #{item.key,jdbcType=VARCHAR} then #{item.oldvalue,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`name` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.name != null">
+            when `key` = #{item.key,jdbcType=VARCHAR} then #{item.name,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`comment` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.comment != null">
+            when `key` = #{item.key,jdbcType=VARCHAR} then #{item.comment,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="operator_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.operatorId != null">
+            when `key` = #{item.key,jdbcType=VARCHAR} then #{item.operatorId,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="operator_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.operatorName != null">
+            when `key` = #{item.key,jdbcType=VARCHAR} then #{item.operatorName,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="operator_email = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.operatorEmail != null">
+            when `key` = #{item.key,jdbcType=VARCHAR} then #{item.operatorEmail,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="last_update = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.lastUpdate != null">
+            when `key` = #{item.key,jdbcType=VARCHAR} then #{item.lastUpdate,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where `key` in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.key,jdbcType=VARCHAR}
+    </foreach>
+  </update>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into gconfig
+    (`key`, `value`, oldvalue, `name`, `comment`, operator_id, operator_name, operator_email, 
+      last_update)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.key,jdbcType=VARCHAR}, #{item.value,jdbcType=LONGVARCHAR}, #{item.oldvalue,jdbcType=LONGVARCHAR}, 
+        #{item.name,jdbcType=VARCHAR}, #{item.comment,jdbcType=LONGVARCHAR}, #{item.operatorId,jdbcType=INTEGER}, 
+        #{item.operatorName,jdbcType=VARCHAR}, #{item.operatorEmail,jdbcType=VARCHAR}, 
+        #{item.lastUpdate,jdbcType=BIGINT})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" parameterType="com.ojbk.entity.Gconfig">
+    <!--@mbg.generated-->
+    insert into gconfig
+    (`key`, `value`, oldvalue, `name`, `comment`, operator_id, operator_name, operator_email, 
+      last_update)
+    values
+    (#{key,jdbcType=VARCHAR}, #{value,jdbcType=LONGVARCHAR}, #{oldvalue,jdbcType=LONGVARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{comment,jdbcType=LONGVARCHAR}, #{operatorId,jdbcType=INTEGER}, 
+      #{operatorName,jdbcType=VARCHAR}, #{operatorEmail,jdbcType=VARCHAR}, #{lastUpdate,jdbcType=BIGINT}
+      )
+    on duplicate key update 
+    `key` = #{key,jdbcType=VARCHAR}, 
+    `value` = #{value,jdbcType=LONGVARCHAR}, 
+    oldvalue = #{oldvalue,jdbcType=LONGVARCHAR}, 
+    `name` = #{name,jdbcType=VARCHAR}, 
+    `comment` = #{comment,jdbcType=LONGVARCHAR}, 
+    operator_id = #{operatorId,jdbcType=INTEGER}, 
+    operator_name = #{operatorName,jdbcType=VARCHAR}, 
+    operator_email = #{operatorEmail,jdbcType=VARCHAR}, 
+    last_update = #{lastUpdate,jdbcType=BIGINT}
+  </insert>
+  <insert id="insertOrUpdateSelective" parameterType="com.ojbk.entity.Gconfig">
+    <!--@mbg.generated-->
+    insert into gconfig
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="key != null">
+        `key`,
+      </if>
+      <if test="value != null">
+        `value`,
+      </if>
+      <if test="oldvalue != null">
+        oldvalue,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="comment != null">
+        `comment`,
+      </if>
+      <if test="operatorId != null">
+        operator_id,
+      </if>
+      <if test="operatorName != null">
+        operator_name,
+      </if>
+      <if test="operatorEmail != null">
+        operator_email,
+      </if>
+      <if test="lastUpdate != null">
+        last_update,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="key != null">
+        #{key,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null">
+        #{value,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="oldvalue != null">
+        #{oldvalue,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null">
+        #{comment,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="operatorId != null">
+        #{operatorId,jdbcType=INTEGER},
+      </if>
+      <if test="operatorName != null">
+        #{operatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorEmail != null">
+        #{operatorEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdate != null">
+        #{lastUpdate,jdbcType=BIGINT},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="key != null">
+        `key` = #{key,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null">
+        `value` = #{value,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="oldvalue != null">
+        oldvalue = #{oldvalue,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null">
+        `comment` = #{comment,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="operatorId != null">
+        operator_id = #{operatorId,jdbcType=INTEGER},
+      </if>
+      <if test="operatorName != null">
+        operator_name = #{operatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorEmail != null">
+        operator_email = #{operatorEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdate != null">
+        last_update = #{lastUpdate,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

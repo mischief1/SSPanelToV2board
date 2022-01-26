@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ojbk.mappers.PaybackMapper">
+  <resultMap id="BaseResultMap" type="com.ojbk.entity.Payback">
+    <!--@mbg.generated-->
+    <!--@Table payback-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="total" jdbcType="DECIMAL" property="total" />
+    <result column="userid" jdbcType="BIGINT" property="userid" />
+    <result column="ref_by" jdbcType="BIGINT" property="refBy" />
+    <result column="ref_traffic" jdbcType="DECIMAL" property="refTraffic" />
+    <result column="ref_get" jdbcType="DECIMAL" property="refGet" />
+    <result column="datetime" jdbcType="BIGINT" property="datetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, total, userid, ref_by, ref_traffic, ref_get, `datetime`
+  </sql>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update payback
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="total = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.total,jdbcType=DECIMAL}
+        </foreach>
+      </trim>
+      <trim prefix="userid = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.userid,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="ref_by = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.refBy,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="ref_traffic = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.refTraffic,jdbcType=DECIMAL}
+        </foreach>
+      </trim>
+      <trim prefix="ref_get = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.refGet,jdbcType=DECIMAL}
+        </foreach>
+      </trim>
+      <trim prefix="`datetime` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.datetime,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update payback
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="total = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.total != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.total,jdbcType=DECIMAL}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="userid = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.userid != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.userid,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="ref_by = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.refBy != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.refBy,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="ref_traffic = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.refTraffic != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.refTraffic,jdbcType=DECIMAL}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="ref_get = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.refGet != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.refGet,jdbcType=DECIMAL}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`datetime` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.datetime != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.datetime,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into payback
+    (total, userid, ref_by, ref_traffic, ref_get, `datetime`)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.total,jdbcType=DECIMAL}, #{item.userid,jdbcType=BIGINT}, #{item.refBy,jdbcType=BIGINT}, 
+        #{item.refTraffic,jdbcType=DECIMAL}, #{item.refGet,jdbcType=DECIMAL}, #{item.datetime,jdbcType=BIGINT}
+        )
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.ojbk.entity.Payback" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into payback
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      total,
+      userid,
+      ref_by,
+      ref_traffic,
+      ref_get,
+      `datetime`,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      #{total,jdbcType=DECIMAL},
+      #{userid,jdbcType=BIGINT},
+      #{refBy,jdbcType=BIGINT},
+      #{refTraffic,jdbcType=DECIMAL},
+      #{refGet,jdbcType=DECIMAL},
+      #{datetime,jdbcType=BIGINT},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      total = #{total,jdbcType=DECIMAL},
+      userid = #{userid,jdbcType=BIGINT},
+      ref_by = #{refBy,jdbcType=BIGINT},
+      ref_traffic = #{refTraffic,jdbcType=DECIMAL},
+      ref_get = #{refGet,jdbcType=DECIMAL},
+      `datetime` = #{datetime,jdbcType=BIGINT},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.ojbk.entity.Payback" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into payback
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="total != null">
+        total,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="refBy != null">
+        ref_by,
+      </if>
+      <if test="refTraffic != null">
+        ref_traffic,
+      </if>
+      <if test="refGet != null">
+        ref_get,
+      </if>
+      <if test="datetime != null">
+        `datetime`,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="total != null">
+        #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="refBy != null">
+        #{refBy,jdbcType=BIGINT},
+      </if>
+      <if test="refTraffic != null">
+        #{refTraffic,jdbcType=DECIMAL},
+      </if>
+      <if test="refGet != null">
+        #{refGet,jdbcType=DECIMAL},
+      </if>
+      <if test="datetime != null">
+        #{datetime,jdbcType=BIGINT},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      <if test="total != null">
+        total = #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="refBy != null">
+        ref_by = #{refBy,jdbcType=BIGINT},
+      </if>
+      <if test="refTraffic != null">
+        ref_traffic = #{refTraffic,jdbcType=DECIMAL},
+      </if>
+      <if test="refGet != null">
+        ref_get = #{refGet,jdbcType=DECIMAL},
+      </if>
+      <if test="datetime != null">
+        `datetime` = #{datetime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

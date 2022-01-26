@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ojbk.mappers.DetectBanLogMapper">
+  <resultMap id="BaseResultMap" type="com.ojbk.entity.DetectBanLog">
+    <!--@mbg.generated-->
+    <!--@Table detect_ban_log-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="detect_number" jdbcType="INTEGER" property="detectNumber" />
+    <result column="ban_time" jdbcType="INTEGER" property="banTime" />
+    <result column="start_time" jdbcType="BIGINT" property="startTime" />
+    <result column="end_time" jdbcType="BIGINT" property="endTime" />
+    <result column="all_detect_number" jdbcType="INTEGER" property="allDetectNumber" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, user_name, user_id, email, detect_number, ban_time, start_time, end_time, all_detect_number
+  </sql>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update detect_ban_log
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="user_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.userName,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="user_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.userId,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="email = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.email,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="detect_number = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.detectNumber,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="ban_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.banTime,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="start_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.startTime,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="end_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.endTime,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="all_detect_number = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.allDetectNumber,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update detect_ban_log
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="user_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.userName != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.userName,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="user_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.userId != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.userId,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="email = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.email != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.email,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="detect_number = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.detectNumber != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.detectNumber,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="ban_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.banTime != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.banTime,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="start_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.startTime != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.startTime,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="end_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.endTime != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.endTime,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="all_detect_number = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.allDetectNumber != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.allDetectNumber,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into detect_ban_log
+    (user_name, user_id, email, detect_number, ban_time, start_time, end_time, all_detect_number
+      )
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.userName,jdbcType=VARCHAR}, #{item.userId,jdbcType=INTEGER}, #{item.email,jdbcType=VARCHAR}, 
+        #{item.detectNumber,jdbcType=INTEGER}, #{item.banTime,jdbcType=INTEGER}, #{item.startTime,jdbcType=BIGINT}, 
+        #{item.endTime,jdbcType=BIGINT}, #{item.allDetectNumber,jdbcType=INTEGER})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.ojbk.entity.DetectBanLog" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into detect_ban_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      user_name,
+      user_id,
+      email,
+      detect_number,
+      ban_time,
+      start_time,
+      end_time,
+      all_detect_number,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      #{userName,jdbcType=VARCHAR},
+      #{userId,jdbcType=INTEGER},
+      #{email,jdbcType=VARCHAR},
+      #{detectNumber,jdbcType=INTEGER},
+      #{banTime,jdbcType=INTEGER},
+      #{startTime,jdbcType=BIGINT},
+      #{endTime,jdbcType=BIGINT},
+      #{allDetectNumber,jdbcType=INTEGER},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      user_name = #{userName,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      email = #{email,jdbcType=VARCHAR},
+      detect_number = #{detectNumber,jdbcType=INTEGER},
+      ban_time = #{banTime,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=BIGINT},
+      end_time = #{endTime,jdbcType=BIGINT},
+      all_detect_number = #{allDetectNumber,jdbcType=INTEGER},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.ojbk.entity.DetectBanLog" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into detect_ban_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="detectNumber != null">
+        detect_number,
+      </if>
+      <if test="banTime != null">
+        ban_time,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="allDetectNumber != null">
+        all_detect_number,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="detectNumber != null">
+        #{detectNumber,jdbcType=INTEGER},
+      </if>
+      <if test="banTime != null">
+        #{banTime,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=BIGINT},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=BIGINT},
+      </if>
+      <if test="allDetectNumber != null">
+        #{allDetectNumber,jdbcType=INTEGER},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="detectNumber != null">
+        detect_number = #{detectNumber,jdbcType=INTEGER},
+      </if>
+      <if test="banTime != null">
+        ban_time = #{banTime,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=BIGINT},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=BIGINT},
+      </if>
+      <if test="allDetectNumber != null">
+        all_detect_number = #{allDetectNumber,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

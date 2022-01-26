@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ojbk.mappers.EmailVerifyMapper">
+  <resultMap id="BaseResultMap" type="com.ojbk.entity.EmailVerify">
+    <!--@mbg.generated-->
+    <!--@Table email_verify-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="email" jdbcType="LONGVARCHAR" property="email" />
+    <result column="ip" jdbcType="LONGVARCHAR" property="ip" />
+    <result column="code" jdbcType="LONGVARCHAR" property="code" />
+    <result column="expire_in" jdbcType="BIGINT" property="expireIn" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, email, ip, code, expire_in
+  </sql>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update email_verify
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="email = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.email,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="ip = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.ip,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="code = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.code,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="expire_in = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.expireIn,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update email_verify
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="email = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.email != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.email,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="ip = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.ip != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.ip,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="code = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.code != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.code,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="expire_in = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.expireIn != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.expireIn,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into email_verify
+    (email, ip, code, expire_in)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.email,jdbcType=LONGVARCHAR}, #{item.ip,jdbcType=LONGVARCHAR}, #{item.code,jdbcType=LONGVARCHAR}, 
+        #{item.expireIn,jdbcType=BIGINT})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.ojbk.entity.EmailVerify" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into email_verify
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      email,
+      ip,
+      code,
+      expire_in,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      #{email,jdbcType=LONGVARCHAR},
+      #{ip,jdbcType=LONGVARCHAR},
+      #{code,jdbcType=LONGVARCHAR},
+      #{expireIn,jdbcType=BIGINT},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      email = #{email,jdbcType=LONGVARCHAR},
+      ip = #{ip,jdbcType=LONGVARCHAR},
+      code = #{code,jdbcType=LONGVARCHAR},
+      expire_in = #{expireIn,jdbcType=BIGINT},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.ojbk.entity.EmailVerify" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into email_verify
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="ip != null">
+        ip,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="expireIn != null">
+        expire_in,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="expireIn != null">
+        #{expireIn,jdbcType=BIGINT},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="ip != null">
+        ip = #{ip,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="expireIn != null">
+        expire_in = #{expireIn,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

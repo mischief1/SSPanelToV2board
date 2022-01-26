@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ojbk.mappers.LinkMapper">
+  <resultMap id="BaseResultMap" type="com.ojbk.entity.Link">
+    <!--@mbg.generated-->
+    <!--@Table link-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="address" jdbcType="LONGVARCHAR" property="address" />
+    <result column="port" jdbcType="INTEGER" property="port" />
+    <result column="token" jdbcType="LONGVARCHAR" property="token" />
+    <result column="ios" jdbcType="INTEGER" property="ios" />
+    <result column="userid" jdbcType="BIGINT" property="userid" />
+    <result column="isp" jdbcType="LONGVARCHAR" property="isp" />
+    <result column="geo" jdbcType="INTEGER" property="geo" />
+    <result column="method" jdbcType="LONGVARCHAR" property="method" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, `type`, address, port, token, ios, userid, isp, geo, `method`
+  </sql>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update link
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="`type` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.type,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="address = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.address,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="port = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.port,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="token = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.token,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="ios = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.ios,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="userid = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.userid,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="isp = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.isp,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="geo = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.geo,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="`method` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.method,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update link
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="`type` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.type != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.type,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="address = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.address != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.address,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="port = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.port != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.port,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="token = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.token != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.token,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="ios = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.ios != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.ios,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="userid = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.userid != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.userid,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="isp = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.isp != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.isp,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="geo = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.geo != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.geo,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`method` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.method != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.method,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into link
+    (`type`, address, port, token, ios, userid, isp, geo, `method`)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.type,jdbcType=INTEGER}, #{item.address,jdbcType=LONGVARCHAR}, #{item.port,jdbcType=INTEGER}, 
+        #{item.token,jdbcType=LONGVARCHAR}, #{item.ios,jdbcType=INTEGER}, #{item.userid,jdbcType=BIGINT}, 
+        #{item.isp,jdbcType=LONGVARCHAR}, #{item.geo,jdbcType=INTEGER}, #{item.method,jdbcType=LONGVARCHAR}
+        )
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.ojbk.entity.Link" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into link
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      `type`,
+      address,
+      port,
+      token,
+      ios,
+      userid,
+      isp,
+      geo,
+      `method`,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      #{type,jdbcType=INTEGER},
+      #{address,jdbcType=LONGVARCHAR},
+      #{port,jdbcType=INTEGER},
+      #{token,jdbcType=LONGVARCHAR},
+      #{ios,jdbcType=INTEGER},
+      #{userid,jdbcType=BIGINT},
+      #{isp,jdbcType=LONGVARCHAR},
+      #{geo,jdbcType=INTEGER},
+      #{method,jdbcType=LONGVARCHAR},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      `type` = #{type,jdbcType=INTEGER},
+      address = #{address,jdbcType=LONGVARCHAR},
+      port = #{port,jdbcType=INTEGER},
+      token = #{token,jdbcType=LONGVARCHAR},
+      ios = #{ios,jdbcType=INTEGER},
+      userid = #{userid,jdbcType=BIGINT},
+      isp = #{isp,jdbcType=LONGVARCHAR},
+      geo = #{geo,jdbcType=INTEGER},
+      `method` = #{method,jdbcType=LONGVARCHAR},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.ojbk.entity.Link" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into link
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="port != null">
+        port,
+      </if>
+      <if test="token != null">
+        token,
+      </if>
+      <if test="ios != null">
+        ios,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="isp != null">
+        isp,
+      </if>
+      <if test="geo != null">
+        geo,
+      </if>
+      <if test="method != null">
+        `method`,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="port != null">
+        #{port,jdbcType=INTEGER},
+      </if>
+      <if test="token != null">
+        #{token,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="ios != null">
+        #{ios,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="isp != null">
+        #{isp,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="geo != null">
+        #{geo,jdbcType=INTEGER},
+      </if>
+      <if test="method != null">
+        #{method,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="port != null">
+        port = #{port,jdbcType=INTEGER},
+      </if>
+      <if test="token != null">
+        token = #{token,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="ios != null">
+        ios = #{ios,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="isp != null">
+        isp = #{isp,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="geo != null">
+        geo = #{geo,jdbcType=INTEGER},
+      </if>
+      <if test="method != null">
+        `method` = #{method,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

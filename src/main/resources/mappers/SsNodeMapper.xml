@@ -1,0 +1,596 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ojbk.mappers.SsNodeMapper">
+  <resultMap id="BaseResultMap" type="com.ojbk.entity.SsNode">
+    <!--@mbg.generated-->
+    <!--@Table ss_node-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="server" jdbcType="VARCHAR" property="server" />
+    <result column="method" jdbcType="VARCHAR" property="method" />
+    <result column="info" jdbcType="VARCHAR" property="info" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="custom_method" jdbcType="BOOLEAN" property="customMethod" />
+    <result column="traffic_rate" jdbcType="FLOAT" property="trafficRate" />
+    <result column="node_class" jdbcType="INTEGER" property="nodeClass" />
+    <result column="node_speedlimit" jdbcType="DECIMAL" property="nodeSpeedlimit" />
+    <result column="node_connector" jdbcType="INTEGER" property="nodeConnector" />
+    <result column="node_bandwidth" jdbcType="BIGINT" property="nodeBandwidth" />
+    <result column="node_bandwidth_limit" jdbcType="BIGINT" property="nodeBandwidthLimit" />
+    <result column="bandwidthlimit_resetday" jdbcType="INTEGER" property="bandwidthlimitResetday" />
+    <result column="node_heartbeat" jdbcType="BIGINT" property="nodeHeartbeat" />
+    <result column="node_ip" jdbcType="LONGVARCHAR" property="nodeIp" />
+    <result column="node_group" jdbcType="INTEGER" property="nodeGroup" />
+    <result column="custom_rss" jdbcType="INTEGER" property="customRss" />
+    <result column="mu_only" jdbcType="INTEGER" property="muOnly" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, `name`, `type`, server, `method`, info, `status`, sort, custom_method, traffic_rate, 
+    node_class, node_speedlimit, node_connector, node_bandwidth, node_bandwidth_limit, 
+    bandwidthlimit_resetday, node_heartbeat, node_ip, node_group, custom_rss, mu_only
+  </sql>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update ss_node
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="`name` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.name,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="`type` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.type,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="server = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.server,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="`method` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.method,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="info = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.info,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="`status` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.status,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="sort = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.sort,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="custom_method = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.customMethod,jdbcType=BOOLEAN}
+        </foreach>
+      </trim>
+      <trim prefix="traffic_rate = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.trafficRate,jdbcType=FLOAT}
+        </foreach>
+      </trim>
+      <trim prefix="node_class = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.nodeClass,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="node_speedlimit = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.nodeSpeedlimit,jdbcType=DECIMAL}
+        </foreach>
+      </trim>
+      <trim prefix="node_connector = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.nodeConnector,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="node_bandwidth = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.nodeBandwidth,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="node_bandwidth_limit = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.nodeBandwidthLimit,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="bandwidthlimit_resetday = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.bandwidthlimitResetday,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="node_heartbeat = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.nodeHeartbeat,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="node_ip = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.nodeIp,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="node_group = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.nodeGroup,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="custom_rss = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.customRss,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="mu_only = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.muOnly,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update ss_node
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="`name` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.name != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.name,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`type` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.type != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.type,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="server = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.server != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.server,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`method` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.method != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.method,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="info = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.info != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.info,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`status` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.status != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.status,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="sort = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.sort != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.sort,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="custom_method = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.customMethod != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.customMethod,jdbcType=BOOLEAN}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="traffic_rate = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.trafficRate != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.trafficRate,jdbcType=FLOAT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="node_class = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.nodeClass != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.nodeClass,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="node_speedlimit = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.nodeSpeedlimit != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.nodeSpeedlimit,jdbcType=DECIMAL}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="node_connector = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.nodeConnector != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.nodeConnector,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="node_bandwidth = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.nodeBandwidth != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.nodeBandwidth,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="node_bandwidth_limit = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.nodeBandwidthLimit != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.nodeBandwidthLimit,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="bandwidthlimit_resetday = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.bandwidthlimitResetday != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.bandwidthlimitResetday,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="node_heartbeat = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.nodeHeartbeat != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.nodeHeartbeat,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="node_ip = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.nodeIp != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.nodeIp,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="node_group = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.nodeGroup != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.nodeGroup,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="custom_rss = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.customRss != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.customRss,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="mu_only = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.muOnly != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.muOnly,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into ss_node
+    (`name`, `type`, server, `method`, info, `status`, sort, custom_method, traffic_rate, 
+      node_class, node_speedlimit, node_connector, node_bandwidth, node_bandwidth_limit, 
+      bandwidthlimit_resetday, node_heartbeat, node_ip, node_group, custom_rss, mu_only
+      )
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.name,jdbcType=VARCHAR}, #{item.type,jdbcType=INTEGER}, #{item.server,jdbcType=VARCHAR}, 
+        #{item.method,jdbcType=VARCHAR}, #{item.info,jdbcType=VARCHAR}, #{item.status,jdbcType=VARCHAR}, 
+        #{item.sort,jdbcType=INTEGER}, #{item.customMethod,jdbcType=BOOLEAN}, #{item.trafficRate,jdbcType=FLOAT}, 
+        #{item.nodeClass,jdbcType=INTEGER}, #{item.nodeSpeedlimit,jdbcType=DECIMAL}, #{item.nodeConnector,jdbcType=INTEGER}, 
+        #{item.nodeBandwidth,jdbcType=BIGINT}, #{item.nodeBandwidthLimit,jdbcType=BIGINT}, 
+        #{item.bandwidthlimitResetday,jdbcType=INTEGER}, #{item.nodeHeartbeat,jdbcType=BIGINT}, 
+        #{item.nodeIp,jdbcType=LONGVARCHAR}, #{item.nodeGroup,jdbcType=INTEGER}, #{item.customRss,jdbcType=INTEGER}, 
+        #{item.muOnly,jdbcType=INTEGER})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.ojbk.entity.SsNode" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into ss_node
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      `name`,
+      `type`,
+      server,
+      `method`,
+      info,
+      `status`,
+      sort,
+      custom_method,
+      traffic_rate,
+      node_class,
+      node_speedlimit,
+      node_connector,
+      node_bandwidth,
+      node_bandwidth_limit,
+      bandwidthlimit_resetday,
+      node_heartbeat,
+      node_ip,
+      node_group,
+      custom_rss,
+      mu_only,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      #{name,jdbcType=VARCHAR},
+      #{type,jdbcType=INTEGER},
+      #{server,jdbcType=VARCHAR},
+      #{method,jdbcType=VARCHAR},
+      #{info,jdbcType=VARCHAR},
+      #{status,jdbcType=VARCHAR},
+      #{sort,jdbcType=INTEGER},
+      #{customMethod,jdbcType=BOOLEAN},
+      #{trafficRate,jdbcType=FLOAT},
+      #{nodeClass,jdbcType=INTEGER},
+      #{nodeSpeedlimit,jdbcType=DECIMAL},
+      #{nodeConnector,jdbcType=INTEGER},
+      #{nodeBandwidth,jdbcType=BIGINT},
+      #{nodeBandwidthLimit,jdbcType=BIGINT},
+      #{bandwidthlimitResetday,jdbcType=INTEGER},
+      #{nodeHeartbeat,jdbcType=BIGINT},
+      #{nodeIp,jdbcType=LONGVARCHAR},
+      #{nodeGroup,jdbcType=INTEGER},
+      #{customRss,jdbcType=INTEGER},
+      #{muOnly,jdbcType=INTEGER},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      `name` = #{name,jdbcType=VARCHAR},
+      `type` = #{type,jdbcType=INTEGER},
+      server = #{server,jdbcType=VARCHAR},
+      `method` = #{method,jdbcType=VARCHAR},
+      info = #{info,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      custom_method = #{customMethod,jdbcType=BOOLEAN},
+      traffic_rate = #{trafficRate,jdbcType=FLOAT},
+      node_class = #{nodeClass,jdbcType=INTEGER},
+      node_speedlimit = #{nodeSpeedlimit,jdbcType=DECIMAL},
+      node_connector = #{nodeConnector,jdbcType=INTEGER},
+      node_bandwidth = #{nodeBandwidth,jdbcType=BIGINT},
+      node_bandwidth_limit = #{nodeBandwidthLimit,jdbcType=BIGINT},
+      bandwidthlimit_resetday = #{bandwidthlimitResetday,jdbcType=INTEGER},
+      node_heartbeat = #{nodeHeartbeat,jdbcType=BIGINT},
+      node_ip = #{nodeIp,jdbcType=LONGVARCHAR},
+      node_group = #{nodeGroup,jdbcType=INTEGER},
+      custom_rss = #{customRss,jdbcType=INTEGER},
+      mu_only = #{muOnly,jdbcType=INTEGER},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.ojbk.entity.SsNode" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into ss_node
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="server != null">
+        server,
+      </if>
+      <if test="method != null">
+        `method`,
+      </if>
+      <if test="info != null">
+        info,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="customMethod != null">
+        custom_method,
+      </if>
+      <if test="trafficRate != null">
+        traffic_rate,
+      </if>
+      <if test="nodeClass != null">
+        node_class,
+      </if>
+      <if test="nodeSpeedlimit != null">
+        node_speedlimit,
+      </if>
+      <if test="nodeConnector != null">
+        node_connector,
+      </if>
+      <if test="nodeBandwidth != null">
+        node_bandwidth,
+      </if>
+      <if test="nodeBandwidthLimit != null">
+        node_bandwidth_limit,
+      </if>
+      <if test="bandwidthlimitResetday != null">
+        bandwidthlimit_resetday,
+      </if>
+      <if test="nodeHeartbeat != null">
+        node_heartbeat,
+      </if>
+      <if test="nodeIp != null">
+        node_ip,
+      </if>
+      <if test="nodeGroup != null">
+        node_group,
+      </if>
+      <if test="customRss != null">
+        custom_rss,
+      </if>
+      <if test="muOnly != null">
+        mu_only,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="server != null">
+        #{server,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null">
+        #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="info != null">
+        #{info,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="customMethod != null">
+        #{customMethod,jdbcType=BOOLEAN},
+      </if>
+      <if test="trafficRate != null">
+        #{trafficRate,jdbcType=FLOAT},
+      </if>
+      <if test="nodeClass != null">
+        #{nodeClass,jdbcType=INTEGER},
+      </if>
+      <if test="nodeSpeedlimit != null">
+        #{nodeSpeedlimit,jdbcType=DECIMAL},
+      </if>
+      <if test="nodeConnector != null">
+        #{nodeConnector,jdbcType=INTEGER},
+      </if>
+      <if test="nodeBandwidth != null">
+        #{nodeBandwidth,jdbcType=BIGINT},
+      </if>
+      <if test="nodeBandwidthLimit != null">
+        #{nodeBandwidthLimit,jdbcType=BIGINT},
+      </if>
+      <if test="bandwidthlimitResetday != null">
+        #{bandwidthlimitResetday,jdbcType=INTEGER},
+      </if>
+      <if test="nodeHeartbeat != null">
+        #{nodeHeartbeat,jdbcType=BIGINT},
+      </if>
+      <if test="nodeIp != null">
+        #{nodeIp,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="nodeGroup != null">
+        #{nodeGroup,jdbcType=INTEGER},
+      </if>
+      <if test="customRss != null">
+        #{customRss,jdbcType=INTEGER},
+      </if>
+      <if test="muOnly != null">
+        #{muOnly,jdbcType=INTEGER},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="server != null">
+        server = #{server,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null">
+        `method` = #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="info != null">
+        info = #{info,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="customMethod != null">
+        custom_method = #{customMethod,jdbcType=BOOLEAN},
+      </if>
+      <if test="trafficRate != null">
+        traffic_rate = #{trafficRate,jdbcType=FLOAT},
+      </if>
+      <if test="nodeClass != null">
+        node_class = #{nodeClass,jdbcType=INTEGER},
+      </if>
+      <if test="nodeSpeedlimit != null">
+        node_speedlimit = #{nodeSpeedlimit,jdbcType=DECIMAL},
+      </if>
+      <if test="nodeConnector != null">
+        node_connector = #{nodeConnector,jdbcType=INTEGER},
+      </if>
+      <if test="nodeBandwidth != null">
+        node_bandwidth = #{nodeBandwidth,jdbcType=BIGINT},
+      </if>
+      <if test="nodeBandwidthLimit != null">
+        node_bandwidth_limit = #{nodeBandwidthLimit,jdbcType=BIGINT},
+      </if>
+      <if test="bandwidthlimitResetday != null">
+        bandwidthlimit_resetday = #{bandwidthlimitResetday,jdbcType=INTEGER},
+      </if>
+      <if test="nodeHeartbeat != null">
+        node_heartbeat = #{nodeHeartbeat,jdbcType=BIGINT},
+      </if>
+      <if test="nodeIp != null">
+        node_ip = #{nodeIp,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="nodeGroup != null">
+        node_group = #{nodeGroup,jdbcType=INTEGER},
+      </if>
+      <if test="customRss != null">
+        custom_rss = #{customRss,jdbcType=INTEGER},
+      </if>
+      <if test="muOnly != null">
+        mu_only = #{muOnly,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

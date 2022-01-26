@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ojbk.mappers.DetectListMapper">
+  <resultMap id="BaseResultMap" type="com.ojbk.entity.DetectList">
+    <!--@mbg.generated-->
+    <!--@Table detect_list-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="LONGVARCHAR" property="name" />
+    <result column="text" jdbcType="LONGVARCHAR" property="text" />
+    <result column="regex" jdbcType="LONGVARCHAR" property="regex" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, `name`, `text`, regex, `type`
+  </sql>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update detect_list
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="`name` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.name,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="`text` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.text,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="regex = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.regex,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="`type` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.type,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update detect_list
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="`name` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.name != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.name,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`text` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.text != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.text,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="regex = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.regex != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.regex,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`type` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.type != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.type,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into detect_list
+    (`name`, `text`, regex, `type`)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.name,jdbcType=LONGVARCHAR}, #{item.text,jdbcType=LONGVARCHAR}, #{item.regex,jdbcType=LONGVARCHAR}, 
+        #{item.type,jdbcType=INTEGER})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.ojbk.entity.DetectList" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into detect_list
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      `name`,
+      `text`,
+      regex,
+      `type`,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      #{name,jdbcType=LONGVARCHAR},
+      #{text,jdbcType=LONGVARCHAR},
+      #{regex,jdbcType=LONGVARCHAR},
+      #{type,jdbcType=INTEGER},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      `name` = #{name,jdbcType=LONGVARCHAR},
+      `text` = #{text,jdbcType=LONGVARCHAR},
+      regex = #{regex,jdbcType=LONGVARCHAR},
+      `type` = #{type,jdbcType=INTEGER},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.ojbk.entity.DetectList" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into detect_list
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="text != null">
+        `text`,
+      </if>
+      <if test="regex != null">
+        regex,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="text != null">
+        #{text,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="regex != null">
+        #{regex,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="text != null">
+        `text` = #{text,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="regex != null">
+        regex = #{regex,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ojbk.mappers.CouponMapper">
+  <resultMap id="BaseResultMap" type="com.ojbk.entity.Coupon">
+    <!--@mbg.generated-->
+    <!--@Table coupon-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="code" jdbcType="LONGVARCHAR" property="code" />
+    <result column="onetime" jdbcType="INTEGER" property="onetime" />
+    <result column="expire" jdbcType="BIGINT" property="expire" />
+    <result column="shop" jdbcType="LONGVARCHAR" property="shop" />
+    <result column="credit" jdbcType="INTEGER" property="credit" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, code, onetime, expire, shop, credit, `status`
+  </sql>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update coupon
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="code = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.code,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="onetime = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.onetime,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="expire = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.expire,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="shop = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.shop,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="credit = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.credit,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="`status` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.status,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update coupon
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="code = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.code != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.code,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="onetime = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.onetime != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.onetime,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="expire = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.expire != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.expire,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="shop = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.shop != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.shop,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="credit = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.credit != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.credit,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`status` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.status != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.status,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into coupon
+    (code, onetime, expire, shop, credit, `status`)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.code,jdbcType=LONGVARCHAR}, #{item.onetime,jdbcType=INTEGER}, #{item.expire,jdbcType=BIGINT}, 
+        #{item.shop,jdbcType=LONGVARCHAR}, #{item.credit,jdbcType=INTEGER}, #{item.status,jdbcType=INTEGER}
+        )
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.ojbk.entity.Coupon" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into coupon
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      code,
+      onetime,
+      expire,
+      shop,
+      credit,
+      `status`,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      #{code,jdbcType=LONGVARCHAR},
+      #{onetime,jdbcType=INTEGER},
+      #{expire,jdbcType=BIGINT},
+      #{shop,jdbcType=LONGVARCHAR},
+      #{credit,jdbcType=INTEGER},
+      #{status,jdbcType=INTEGER},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      code = #{code,jdbcType=LONGVARCHAR},
+      onetime = #{onetime,jdbcType=INTEGER},
+      expire = #{expire,jdbcType=BIGINT},
+      shop = #{shop,jdbcType=LONGVARCHAR},
+      credit = #{credit,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=INTEGER},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.ojbk.entity.Coupon" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into coupon
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="onetime != null">
+        onetime,
+      </if>
+      <if test="expire != null">
+        expire,
+      </if>
+      <if test="shop != null">
+        shop,
+      </if>
+      <if test="credit != null">
+        credit,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="onetime != null">
+        #{onetime,jdbcType=INTEGER},
+      </if>
+      <if test="expire != null">
+        #{expire,jdbcType=BIGINT},
+      </if>
+      <if test="shop != null">
+        #{shop,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="credit != null">
+        #{credit,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="onetime != null">
+        onetime = #{onetime,jdbcType=INTEGER},
+      </if>
+      <if test="expire != null">
+        expire = #{expire,jdbcType=BIGINT},
+      </if>
+      <if test="shop != null">
+        shop = #{shop,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="credit != null">
+        credit = #{credit,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

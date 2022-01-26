@@ -1,0 +1,856 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ojbk.mappers.V2UserMapper">
+  <resultMap id="BaseResultMap" type="com.ojbk.entity.V2User">
+    <!--@mbg.generated-->
+    <!--@Table v2_user-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="invite_user_id" jdbcType="INTEGER" property="inviteUserId" />
+    <result column="telegram_id" jdbcType="BIGINT" property="telegramId" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="password_algo" jdbcType="CHAR" property="passwordAlgo" />
+    <result column="password_salt" jdbcType="CHAR" property="passwordSalt" />
+    <result column="balance" jdbcType="INTEGER" property="balance" />
+    <result column="discount" jdbcType="INTEGER" property="discount" />
+    <result column="commission_type" jdbcType="TINYINT" property="commissionType" />
+    <result column="commission_rate" jdbcType="INTEGER" property="commissionRate" />
+    <result column="commission_balance" jdbcType="INTEGER" property="commissionBalance" />
+    <result column="t" jdbcType="INTEGER" property="t" />
+    <result column="u" jdbcType="BIGINT" property="u" />
+    <result column="d" jdbcType="BIGINT" property="d" />
+    <result column="transfer_enable" jdbcType="BIGINT" property="transferEnable" />
+    <result column="banned" jdbcType="BOOLEAN" property="banned" />
+    <result column="is_admin" jdbcType="BOOLEAN" property="isAdmin" />
+    <result column="is_staff" jdbcType="BOOLEAN" property="isStaff" />
+    <result column="last_login_at" jdbcType="INTEGER" property="lastLoginAt" />
+    <result column="last_login_ip" jdbcType="INTEGER" property="lastLoginIp" />
+    <result column="uuid" jdbcType="VARCHAR" property="uuid" />
+    <result column="group_id" jdbcType="INTEGER" property="groupId" />
+    <result column="plan_id" jdbcType="INTEGER" property="planId" />
+    <result column="remind_expire" jdbcType="TINYINT" property="remindExpire" />
+    <result column="remind_traffic" jdbcType="TINYINT" property="remindTraffic" />
+    <result column="token" jdbcType="CHAR" property="token" />
+    <result column="remarks" jdbcType="LONGVARCHAR" property="remarks" />
+    <result column="expired_at" jdbcType="BIGINT" property="expiredAt" />
+    <result column="created_at" jdbcType="INTEGER" property="createdAt" />
+    <result column="updated_at" jdbcType="INTEGER" property="updatedAt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, invite_user_id, telegram_id, email, `password`, password_algo, password_salt, 
+    balance, discount, commission_type, commission_rate, commission_balance, t, u, d, 
+    transfer_enable, banned, is_admin, is_staff, last_login_at, last_login_ip, uuid, 
+    group_id, plan_id, remind_expire, remind_traffic, token, remarks, expired_at, created_at, 
+    updated_at
+  </sql>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update v2_user
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="invite_user_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.inviteUserId,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="telegram_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.telegramId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="email = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.email,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="`password` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.password,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="password_algo = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.passwordAlgo,jdbcType=CHAR}
+        </foreach>
+      </trim>
+      <trim prefix="password_salt = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.passwordSalt,jdbcType=CHAR}
+        </foreach>
+      </trim>
+      <trim prefix="balance = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.balance,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="discount = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.discount,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="commission_type = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.commissionType,jdbcType=TINYINT}
+        </foreach>
+      </trim>
+      <trim prefix="commission_rate = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.commissionRate,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="commission_balance = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.commissionBalance,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="t = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.t,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="u = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.u,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="d = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.d,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="transfer_enable = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.transferEnable,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="banned = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.banned,jdbcType=BOOLEAN}
+        </foreach>
+      </trim>
+      <trim prefix="is_admin = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.isAdmin,jdbcType=BOOLEAN}
+        </foreach>
+      </trim>
+      <trim prefix="is_staff = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.isStaff,jdbcType=BOOLEAN}
+        </foreach>
+      </trim>
+      <trim prefix="last_login_at = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.lastLoginAt,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="last_login_ip = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.lastLoginIp,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="uuid = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.uuid,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="group_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.groupId,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="plan_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.planId,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="remind_expire = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.remindExpire,jdbcType=TINYINT}
+        </foreach>
+      </trim>
+      <trim prefix="remind_traffic = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.remindTraffic,jdbcType=TINYINT}
+        </foreach>
+      </trim>
+      <trim prefix="token = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.token,jdbcType=CHAR}
+        </foreach>
+      </trim>
+      <trim prefix="remarks = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.remarks,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="expired_at = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.expiredAt,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="created_at = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.createdAt,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="updated_at = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.updatedAt,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update v2_user
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="invite_user_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.inviteUserId != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.inviteUserId,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="telegram_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.telegramId != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.telegramId,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="email = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.email != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.email,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`password` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.password != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.password,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="password_algo = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.passwordAlgo != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.passwordAlgo,jdbcType=CHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="password_salt = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.passwordSalt != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.passwordSalt,jdbcType=CHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="balance = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.balance != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.balance,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="discount = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.discount != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.discount,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="commission_type = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.commissionType != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.commissionType,jdbcType=TINYINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="commission_rate = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.commissionRate != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.commissionRate,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="commission_balance = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.commissionBalance != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.commissionBalance,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="t = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.t != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.t,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="u = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.u != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.u,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="d = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.d != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.d,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="transfer_enable = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.transferEnable != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.transferEnable,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="banned = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.banned != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.banned,jdbcType=BOOLEAN}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="is_admin = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.isAdmin != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.isAdmin,jdbcType=BOOLEAN}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="is_staff = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.isStaff != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.isStaff,jdbcType=BOOLEAN}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="last_login_at = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.lastLoginAt != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.lastLoginAt,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="last_login_ip = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.lastLoginIp != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.lastLoginIp,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="uuid = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.uuid != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.uuid,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="group_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.groupId != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.groupId,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="plan_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.planId != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.planId,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="remind_expire = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.remindExpire != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.remindExpire,jdbcType=TINYINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="remind_traffic = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.remindTraffic != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.remindTraffic,jdbcType=TINYINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="token = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.token != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.token,jdbcType=CHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="remarks = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.remarks != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.remarks,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="expired_at = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.expiredAt != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.expiredAt,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="created_at = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.createdAt != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.createdAt,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="updated_at = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.updatedAt != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.updatedAt,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into v2_user
+    (invite_user_id, telegram_id, email, `password`, password_algo, password_salt, balance, 
+      discount, commission_type, commission_rate, commission_balance, t, u, d, transfer_enable, 
+      banned, is_admin, is_staff, last_login_at, last_login_ip, uuid, group_id, plan_id, 
+      remind_expire, remind_traffic, token, remarks, expired_at, created_at, updated_at
+      )
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.inviteUserId,jdbcType=INTEGER}, #{item.telegramId,jdbcType=BIGINT}, #{item.email,jdbcType=VARCHAR}, 
+        #{item.password,jdbcType=VARCHAR}, #{item.passwordAlgo,jdbcType=CHAR}, #{item.passwordSalt,jdbcType=CHAR}, 
+        #{item.balance,jdbcType=INTEGER}, #{item.discount,jdbcType=INTEGER}, #{item.commissionType,jdbcType=TINYINT}, 
+        #{item.commissionRate,jdbcType=INTEGER}, #{item.commissionBalance,jdbcType=INTEGER}, 
+        #{item.t,jdbcType=INTEGER}, #{item.u,jdbcType=BIGINT}, #{item.d,jdbcType=BIGINT}, 
+        #{item.transferEnable,jdbcType=BIGINT}, #{item.banned,jdbcType=BOOLEAN}, #{item.isAdmin,jdbcType=BOOLEAN}, 
+        #{item.isStaff,jdbcType=BOOLEAN}, #{item.lastLoginAt,jdbcType=INTEGER}, #{item.lastLoginIp,jdbcType=INTEGER}, 
+        #{item.uuid,jdbcType=VARCHAR}, #{item.groupId,jdbcType=INTEGER}, #{item.planId,jdbcType=INTEGER}, 
+        #{item.remindExpire,jdbcType=TINYINT}, #{item.remindTraffic,jdbcType=TINYINT}, 
+        #{item.token,jdbcType=CHAR}, #{item.remarks,jdbcType=LONGVARCHAR}, #{item.expiredAt,jdbcType=BIGINT}, 
+        #{item.createdAt,jdbcType=INTEGER}, #{item.updatedAt,jdbcType=INTEGER})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.ojbk.entity.V2User" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into v2_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      invite_user_id,
+      telegram_id,
+      email,
+      `password`,
+      password_algo,
+      password_salt,
+      balance,
+      discount,
+      commission_type,
+      commission_rate,
+      commission_balance,
+      t,
+      u,
+      d,
+      transfer_enable,
+      banned,
+      is_admin,
+      is_staff,
+      last_login_at,
+      last_login_ip,
+      uuid,
+      group_id,
+      plan_id,
+      remind_expire,
+      remind_traffic,
+      token,
+      remarks,
+      expired_at,
+      created_at,
+      updated_at,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      #{inviteUserId,jdbcType=INTEGER},
+      #{telegramId,jdbcType=BIGINT},
+      #{email,jdbcType=VARCHAR},
+      #{password,jdbcType=VARCHAR},
+      #{passwordAlgo,jdbcType=CHAR},
+      #{passwordSalt,jdbcType=CHAR},
+      #{balance,jdbcType=INTEGER},
+      #{discount,jdbcType=INTEGER},
+      #{commissionType,jdbcType=TINYINT},
+      #{commissionRate,jdbcType=INTEGER},
+      #{commissionBalance,jdbcType=INTEGER},
+      #{t,jdbcType=INTEGER},
+      #{u,jdbcType=BIGINT},
+      #{d,jdbcType=BIGINT},
+      #{transferEnable,jdbcType=BIGINT},
+      #{banned,jdbcType=BOOLEAN},
+      #{isAdmin,jdbcType=BOOLEAN},
+      #{isStaff,jdbcType=BOOLEAN},
+      #{lastLoginAt,jdbcType=INTEGER},
+      #{lastLoginIp,jdbcType=INTEGER},
+      #{uuid,jdbcType=VARCHAR},
+      #{groupId,jdbcType=INTEGER},
+      #{planId,jdbcType=INTEGER},
+      #{remindExpire,jdbcType=TINYINT},
+      #{remindTraffic,jdbcType=TINYINT},
+      #{token,jdbcType=CHAR},
+      #{remarks,jdbcType=LONGVARCHAR},
+      #{expiredAt,jdbcType=BIGINT},
+      #{createdAt,jdbcType=INTEGER},
+      #{updatedAt,jdbcType=INTEGER},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      invite_user_id = #{inviteUserId,jdbcType=INTEGER},
+      telegram_id = #{telegramId,jdbcType=BIGINT},
+      email = #{email,jdbcType=VARCHAR},
+      `password` = #{password,jdbcType=VARCHAR},
+      password_algo = #{passwordAlgo,jdbcType=CHAR},
+      password_salt = #{passwordSalt,jdbcType=CHAR},
+      balance = #{balance,jdbcType=INTEGER},
+      discount = #{discount,jdbcType=INTEGER},
+      commission_type = #{commissionType,jdbcType=TINYINT},
+      commission_rate = #{commissionRate,jdbcType=INTEGER},
+      commission_balance = #{commissionBalance,jdbcType=INTEGER},
+      t = #{t,jdbcType=INTEGER},
+      u = #{u,jdbcType=BIGINT},
+      d = #{d,jdbcType=BIGINT},
+      transfer_enable = #{transferEnable,jdbcType=BIGINT},
+      banned = #{banned,jdbcType=BOOLEAN},
+      is_admin = #{isAdmin,jdbcType=BOOLEAN},
+      is_staff = #{isStaff,jdbcType=BOOLEAN},
+      last_login_at = #{lastLoginAt,jdbcType=INTEGER},
+      last_login_ip = #{lastLoginIp,jdbcType=INTEGER},
+      uuid = #{uuid,jdbcType=VARCHAR},
+      group_id = #{groupId,jdbcType=INTEGER},
+      plan_id = #{planId,jdbcType=INTEGER},
+      remind_expire = #{remindExpire,jdbcType=TINYINT},
+      remind_traffic = #{remindTraffic,jdbcType=TINYINT},
+      token = #{token,jdbcType=CHAR},
+      remarks = #{remarks,jdbcType=LONGVARCHAR},
+      expired_at = #{expiredAt,jdbcType=BIGINT},
+      created_at = #{createdAt,jdbcType=INTEGER},
+      updated_at = #{updatedAt,jdbcType=INTEGER},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.ojbk.entity.V2User" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into v2_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="inviteUserId != null">
+        invite_user_id,
+      </if>
+      <if test="telegramId != null">
+        telegram_id,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="password != null">
+        `password`,
+      </if>
+      <if test="passwordAlgo != null">
+        password_algo,
+      </if>
+      <if test="passwordSalt != null">
+        password_salt,
+      </if>
+      <if test="balance != null">
+        balance,
+      </if>
+      <if test="discount != null">
+        discount,
+      </if>
+      <if test="commissionType != null">
+        commission_type,
+      </if>
+      <if test="commissionRate != null">
+        commission_rate,
+      </if>
+      <if test="commissionBalance != null">
+        commission_balance,
+      </if>
+      <if test="t != null">
+        t,
+      </if>
+      <if test="u != null">
+        u,
+      </if>
+      <if test="d != null">
+        d,
+      </if>
+      <if test="transferEnable != null">
+        transfer_enable,
+      </if>
+      <if test="banned != null">
+        banned,
+      </if>
+      <if test="isAdmin != null">
+        is_admin,
+      </if>
+      <if test="isStaff != null">
+        is_staff,
+      </if>
+      <if test="lastLoginAt != null">
+        last_login_at,
+      </if>
+      <if test="lastLoginIp != null">
+        last_login_ip,
+      </if>
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="groupId != null">
+        group_id,
+      </if>
+      <if test="planId != null">
+        plan_id,
+      </if>
+      <if test="remindExpire != null">
+        remind_expire,
+      </if>
+      <if test="remindTraffic != null">
+        remind_traffic,
+      </if>
+      <if test="token != null">
+        token,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+      <if test="expiredAt != null">
+        expired_at,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="inviteUserId != null">
+        #{inviteUserId,jdbcType=INTEGER},
+      </if>
+      <if test="telegramId != null">
+        #{telegramId,jdbcType=BIGINT},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordAlgo != null">
+        #{passwordAlgo,jdbcType=CHAR},
+      </if>
+      <if test="passwordSalt != null">
+        #{passwordSalt,jdbcType=CHAR},
+      </if>
+      <if test="balance != null">
+        #{balance,jdbcType=INTEGER},
+      </if>
+      <if test="discount != null">
+        #{discount,jdbcType=INTEGER},
+      </if>
+      <if test="commissionType != null">
+        #{commissionType,jdbcType=TINYINT},
+      </if>
+      <if test="commissionRate != null">
+        #{commissionRate,jdbcType=INTEGER},
+      </if>
+      <if test="commissionBalance != null">
+        #{commissionBalance,jdbcType=INTEGER},
+      </if>
+      <if test="t != null">
+        #{t,jdbcType=INTEGER},
+      </if>
+      <if test="u != null">
+        #{u,jdbcType=BIGINT},
+      </if>
+      <if test="d != null">
+        #{d,jdbcType=BIGINT},
+      </if>
+      <if test="transferEnable != null">
+        #{transferEnable,jdbcType=BIGINT},
+      </if>
+      <if test="banned != null">
+        #{banned,jdbcType=BOOLEAN},
+      </if>
+      <if test="isAdmin != null">
+        #{isAdmin,jdbcType=BOOLEAN},
+      </if>
+      <if test="isStaff != null">
+        #{isStaff,jdbcType=BOOLEAN},
+      </if>
+      <if test="lastLoginAt != null">
+        #{lastLoginAt,jdbcType=INTEGER},
+      </if>
+      <if test="lastLoginIp != null">
+        #{lastLoginIp,jdbcType=INTEGER},
+      </if>
+      <if test="uuid != null">
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="groupId != null">
+        #{groupId,jdbcType=INTEGER},
+      </if>
+      <if test="planId != null">
+        #{planId,jdbcType=INTEGER},
+      </if>
+      <if test="remindExpire != null">
+        #{remindExpire,jdbcType=TINYINT},
+      </if>
+      <if test="remindTraffic != null">
+        #{remindTraffic,jdbcType=TINYINT},
+      </if>
+      <if test="token != null">
+        #{token,jdbcType=CHAR},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="expiredAt != null">
+        #{expiredAt,jdbcType=BIGINT},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=INTEGER},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=INTEGER},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="inviteUserId != null">
+        invite_user_id = #{inviteUserId,jdbcType=INTEGER},
+      </if>
+      <if test="telegramId != null">
+        telegram_id = #{telegramId,jdbcType=BIGINT},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        `password` = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordAlgo != null">
+        password_algo = #{passwordAlgo,jdbcType=CHAR},
+      </if>
+      <if test="passwordSalt != null">
+        password_salt = #{passwordSalt,jdbcType=CHAR},
+      </if>
+      <if test="balance != null">
+        balance = #{balance,jdbcType=INTEGER},
+      </if>
+      <if test="discount != null">
+        discount = #{discount,jdbcType=INTEGER},
+      </if>
+      <if test="commissionType != null">
+        commission_type = #{commissionType,jdbcType=TINYINT},
+      </if>
+      <if test="commissionRate != null">
+        commission_rate = #{commissionRate,jdbcType=INTEGER},
+      </if>
+      <if test="commissionBalance != null">
+        commission_balance = #{commissionBalance,jdbcType=INTEGER},
+      </if>
+      <if test="t != null">
+        t = #{t,jdbcType=INTEGER},
+      </if>
+      <if test="u != null">
+        u = #{u,jdbcType=BIGINT},
+      </if>
+      <if test="d != null">
+        d = #{d,jdbcType=BIGINT},
+      </if>
+      <if test="transferEnable != null">
+        transfer_enable = #{transferEnable,jdbcType=BIGINT},
+      </if>
+      <if test="banned != null">
+        banned = #{banned,jdbcType=BOOLEAN},
+      </if>
+      <if test="isAdmin != null">
+        is_admin = #{isAdmin,jdbcType=BOOLEAN},
+      </if>
+      <if test="isStaff != null">
+        is_staff = #{isStaff,jdbcType=BOOLEAN},
+      </if>
+      <if test="lastLoginAt != null">
+        last_login_at = #{lastLoginAt,jdbcType=INTEGER},
+      </if>
+      <if test="lastLoginIp != null">
+        last_login_ip = #{lastLoginIp,jdbcType=INTEGER},
+      </if>
+      <if test="uuid != null">
+        uuid = #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="groupId != null">
+        group_id = #{groupId,jdbcType=INTEGER},
+      </if>
+      <if test="planId != null">
+        plan_id = #{planId,jdbcType=INTEGER},
+      </if>
+      <if test="remindExpire != null">
+        remind_expire = #{remindExpire,jdbcType=TINYINT},
+      </if>
+      <if test="remindTraffic != null">
+        remind_traffic = #{remindTraffic,jdbcType=TINYINT},
+      </if>
+      <if test="token != null">
+        token = #{token,jdbcType=CHAR},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="expiredAt != null">
+        expired_at = #{expiredAt,jdbcType=BIGINT},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=INTEGER},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+
+  <delete id="deleteall">
+    delete from v2_user
+    </delete>
+</mapper>

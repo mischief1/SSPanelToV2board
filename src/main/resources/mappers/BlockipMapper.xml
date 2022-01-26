@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ojbk.mappers.BlockipMapper">
+  <resultMap id="BaseResultMap" type="com.ojbk.entity.Blockip">
+    <!--@mbg.generated-->
+    <!--@Table blockip-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="nodeid" jdbcType="INTEGER" property="nodeid" />
+    <result column="ip" jdbcType="LONGVARCHAR" property="ip" />
+    <result column="datetime" jdbcType="BIGINT" property="datetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, nodeid, ip, `datetime`
+  </sql>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update blockip
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="nodeid = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.nodeid,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="ip = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.ip,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="`datetime` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.datetime,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update blockip
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="nodeid = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.nodeid != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.nodeid,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="ip = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.ip != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.ip,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`datetime` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.datetime != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.datetime,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into blockip
+    (nodeid, ip, `datetime`)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.nodeid,jdbcType=INTEGER}, #{item.ip,jdbcType=LONGVARCHAR}, #{item.datetime,jdbcType=BIGINT}
+        )
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.ojbk.entity.Blockip" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into blockip
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      nodeid,
+      ip,
+      `datetime`,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      #{nodeid,jdbcType=INTEGER},
+      #{ip,jdbcType=LONGVARCHAR},
+      #{datetime,jdbcType=BIGINT},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      nodeid = #{nodeid,jdbcType=INTEGER},
+      ip = #{ip,jdbcType=LONGVARCHAR},
+      `datetime` = #{datetime,jdbcType=BIGINT},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.ojbk.entity.Blockip" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into blockip
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="nodeid != null">
+        nodeid,
+      </if>
+      <if test="ip != null">
+        ip,
+      </if>
+      <if test="datetime != null">
+        `datetime`,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="nodeid != null">
+        #{nodeid,jdbcType=INTEGER},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="datetime != null">
+        #{datetime,jdbcType=BIGINT},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      <if test="nodeid != null">
+        nodeid = #{nodeid,jdbcType=INTEGER},
+      </if>
+      <if test="ip != null">
+        ip = #{ip,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="datetime != null">
+        `datetime` = #{datetime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

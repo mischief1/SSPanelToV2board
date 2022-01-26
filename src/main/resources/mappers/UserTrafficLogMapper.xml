@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ojbk.mappers.UserTrafficLogMapper">
+  <resultMap id="BaseResultMap" type="com.ojbk.entity.UserTrafficLog">
+    <!--@mbg.generated-->
+    <!--@Table user_traffic_log-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="u" jdbcType="BIGINT" property="u" />
+    <result column="d" jdbcType="BIGINT" property="d" />
+    <result column="node_id" jdbcType="INTEGER" property="nodeId" />
+    <result column="rate" jdbcType="FLOAT" property="rate" />
+    <result column="traffic" jdbcType="VARCHAR" property="traffic" />
+    <result column="log_time" jdbcType="INTEGER" property="logTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, user_id, u, d, node_id, rate, traffic, log_time
+  </sql>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update user_traffic_log
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="user_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.userId,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="u = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.u,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="d = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.d,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="node_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.nodeId,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="rate = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.rate,jdbcType=FLOAT}
+        </foreach>
+      </trim>
+      <trim prefix="traffic = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.traffic,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="log_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.logTime,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update user_traffic_log
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="user_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.userId != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.userId,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="u = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.u != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.u,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="d = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.d != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.d,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="node_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.nodeId != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.nodeId,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="rate = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.rate != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.rate,jdbcType=FLOAT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="traffic = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.traffic != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.traffic,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="log_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.logTime != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.logTime,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into user_traffic_log
+    (user_id, u, d, node_id, rate, traffic, log_time)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.userId,jdbcType=INTEGER}, #{item.u,jdbcType=BIGINT}, #{item.d,jdbcType=BIGINT}, 
+        #{item.nodeId,jdbcType=INTEGER}, #{item.rate,jdbcType=FLOAT}, #{item.traffic,jdbcType=VARCHAR}, 
+        #{item.logTime,jdbcType=INTEGER})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.ojbk.entity.UserTrafficLog" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into user_traffic_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      user_id,
+      u,
+      d,
+      node_id,
+      rate,
+      traffic,
+      log_time,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      #{userId,jdbcType=INTEGER},
+      #{u,jdbcType=BIGINT},
+      #{d,jdbcType=BIGINT},
+      #{nodeId,jdbcType=INTEGER},
+      #{rate,jdbcType=FLOAT},
+      #{traffic,jdbcType=VARCHAR},
+      #{logTime,jdbcType=INTEGER},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      user_id = #{userId,jdbcType=INTEGER},
+      u = #{u,jdbcType=BIGINT},
+      d = #{d,jdbcType=BIGINT},
+      node_id = #{nodeId,jdbcType=INTEGER},
+      rate = #{rate,jdbcType=FLOAT},
+      traffic = #{traffic,jdbcType=VARCHAR},
+      log_time = #{logTime,jdbcType=INTEGER},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.ojbk.entity.UserTrafficLog" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into user_traffic_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="u != null">
+        u,
+      </if>
+      <if test="d != null">
+        d,
+      </if>
+      <if test="nodeId != null">
+        node_id,
+      </if>
+      <if test="rate != null">
+        rate,
+      </if>
+      <if test="traffic != null">
+        traffic,
+      </if>
+      <if test="logTime != null">
+        log_time,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="u != null">
+        #{u,jdbcType=BIGINT},
+      </if>
+      <if test="d != null">
+        #{d,jdbcType=BIGINT},
+      </if>
+      <if test="nodeId != null">
+        #{nodeId,jdbcType=INTEGER},
+      </if>
+      <if test="rate != null">
+        #{rate,jdbcType=FLOAT},
+      </if>
+      <if test="traffic != null">
+        #{traffic,jdbcType=VARCHAR},
+      </if>
+      <if test="logTime != null">
+        #{logTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="u != null">
+        u = #{u,jdbcType=BIGINT},
+      </if>
+      <if test="d != null">
+        d = #{d,jdbcType=BIGINT},
+      </if>
+      <if test="nodeId != null">
+        node_id = #{nodeId,jdbcType=INTEGER},
+      </if>
+      <if test="rate != null">
+        rate = #{rate,jdbcType=FLOAT},
+      </if>
+      <if test="traffic != null">
+        traffic = #{traffic,jdbcType=VARCHAR},
+      </if>
+      <if test="logTime != null">
+        log_time = #{logTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

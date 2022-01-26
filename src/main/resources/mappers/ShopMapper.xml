@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ojbk.mappers.ShopMapper">
+  <resultMap id="BaseResultMap" type="com.ojbk.entity.Shop">
+    <!--@mbg.generated-->
+    <!--@Table shop-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="LONGVARCHAR" property="name" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+    <result column="auto_renew" jdbcType="INTEGER" property="autoRenew" />
+    <result column="auto_reset_bandwidth" jdbcType="INTEGER" property="autoResetBandwidth" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, `name`, price, content, auto_renew, auto_reset_bandwidth, `status`
+  </sql>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update shop
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="`name` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.name,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="price = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.price,jdbcType=DECIMAL}
+        </foreach>
+      </trim>
+      <trim prefix="content = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.content,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="auto_renew = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.autoRenew,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="auto_reset_bandwidth = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.autoResetBandwidth,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="`status` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.status,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update shop
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="`name` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.name != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.name,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="price = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.price != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.price,jdbcType=DECIMAL}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="content = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.content != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.content,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="auto_renew = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.autoRenew != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.autoRenew,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="auto_reset_bandwidth = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.autoResetBandwidth != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.autoResetBandwidth,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`status` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.status != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.status,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into shop
+    (`name`, price, content, auto_renew, auto_reset_bandwidth, `status`)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.name,jdbcType=LONGVARCHAR}, #{item.price,jdbcType=DECIMAL}, #{item.content,jdbcType=LONGVARCHAR}, 
+        #{item.autoRenew,jdbcType=INTEGER}, #{item.autoResetBandwidth,jdbcType=INTEGER}, 
+        #{item.status,jdbcType=INTEGER})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.ojbk.entity.Shop" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into shop
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      `name`,
+      price,
+      content,
+      auto_renew,
+      auto_reset_bandwidth,
+      `status`,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      #{name,jdbcType=LONGVARCHAR},
+      #{price,jdbcType=DECIMAL},
+      #{content,jdbcType=LONGVARCHAR},
+      #{autoRenew,jdbcType=INTEGER},
+      #{autoResetBandwidth,jdbcType=INTEGER},
+      #{status,jdbcType=INTEGER},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      `name` = #{name,jdbcType=LONGVARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      content = #{content,jdbcType=LONGVARCHAR},
+      auto_renew = #{autoRenew,jdbcType=INTEGER},
+      auto_reset_bandwidth = #{autoResetBandwidth,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=INTEGER},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.ojbk.entity.Shop" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into shop
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="autoRenew != null">
+        auto_renew,
+      </if>
+      <if test="autoResetBandwidth != null">
+        auto_reset_bandwidth,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="autoRenew != null">
+        #{autoRenew,jdbcType=INTEGER},
+      </if>
+      <if test="autoResetBandwidth != null">
+        #{autoResetBandwidth,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="autoRenew != null">
+        auto_renew = #{autoRenew,jdbcType=INTEGER},
+      </if>
+      <if test="autoResetBandwidth != null">
+        auto_reset_bandwidth = #{autoResetBandwidth,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

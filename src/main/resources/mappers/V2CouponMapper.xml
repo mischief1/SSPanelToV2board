@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ojbk.mappers.V2CouponMapper">
+  <resultMap id="BaseResultMap" type="com.ojbk.entity.V2Coupon">
+    <!--@mbg.generated-->
+    <!--@Table v2_coupon-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="type" jdbcType="BOOLEAN" property="type" />
+    <result column="value" jdbcType="INTEGER" property="value" />
+    <result column="limit_use" jdbcType="INTEGER" property="limitUse" />
+    <result column="limit_use_with_user" jdbcType="INTEGER" property="limitUseWithUser" />
+    <result column="limit_plan_ids" jdbcType="VARCHAR" property="limitPlanIds" />
+    <result column="started_at" jdbcType="INTEGER" property="startedAt" />
+    <result column="ended_at" jdbcType="INTEGER" property="endedAt" />
+    <result column="created_at" jdbcType="INTEGER" property="createdAt" />
+    <result column="updated_at" jdbcType="INTEGER" property="updatedAt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, code, `name`, `type`, `value`, limit_use, limit_use_with_user, limit_plan_ids, 
+    started_at, ended_at, created_at, updated_at
+  </sql>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update v2_coupon
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="code = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.code,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="`name` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.name,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="`type` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.type,jdbcType=BOOLEAN}
+        </foreach>
+      </trim>
+      <trim prefix="`value` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.value,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="limit_use = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.limitUse,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="limit_use_with_user = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.limitUseWithUser,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="limit_plan_ids = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.limitPlanIds,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="started_at = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.startedAt,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="ended_at = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.endedAt,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="created_at = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.createdAt,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="updated_at = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.updatedAt,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update v2_coupon
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="code = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.code != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.code,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`name` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.name != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.name,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`type` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.type != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.type,jdbcType=BOOLEAN}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`value` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.value != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.value,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="limit_use = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.limitUse != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.limitUse,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="limit_use_with_user = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.limitUseWithUser != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.limitUseWithUser,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="limit_plan_ids = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.limitPlanIds != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.limitPlanIds,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="started_at = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.startedAt != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.startedAt,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="ended_at = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.endedAt != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.endedAt,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="created_at = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.createdAt != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.createdAt,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="updated_at = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.updatedAt != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.updatedAt,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into v2_coupon
+    (code, `name`, `type`, `value`, limit_use, limit_use_with_user, limit_plan_ids, started_at, 
+      ended_at, created_at, updated_at)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.code,jdbcType=VARCHAR}, #{item.name,jdbcType=VARCHAR}, #{item.type,jdbcType=BOOLEAN}, 
+        #{item.value,jdbcType=INTEGER}, #{item.limitUse,jdbcType=INTEGER}, #{item.limitUseWithUser,jdbcType=INTEGER}, 
+        #{item.limitPlanIds,jdbcType=VARCHAR}, #{item.startedAt,jdbcType=INTEGER}, #{item.endedAt,jdbcType=INTEGER}, 
+        #{item.createdAt,jdbcType=INTEGER}, #{item.updatedAt,jdbcType=INTEGER})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.ojbk.entity.V2Coupon" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into v2_coupon
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      code,
+      `name`,
+      `type`,
+      `value`,
+      limit_use,
+      limit_use_with_user,
+      limit_plan_ids,
+      started_at,
+      ended_at,
+      created_at,
+      updated_at,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      #{code,jdbcType=VARCHAR},
+      #{name,jdbcType=VARCHAR},
+      #{type,jdbcType=BOOLEAN},
+      #{value,jdbcType=INTEGER},
+      #{limitUse,jdbcType=INTEGER},
+      #{limitUseWithUser,jdbcType=INTEGER},
+      #{limitPlanIds,jdbcType=VARCHAR},
+      #{startedAt,jdbcType=INTEGER},
+      #{endedAt,jdbcType=INTEGER},
+      #{createdAt,jdbcType=INTEGER},
+      #{updatedAt,jdbcType=INTEGER},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      code = #{code,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR},
+      `type` = #{type,jdbcType=BOOLEAN},
+      `value` = #{value,jdbcType=INTEGER},
+      limit_use = #{limitUse,jdbcType=INTEGER},
+      limit_use_with_user = #{limitUseWithUser,jdbcType=INTEGER},
+      limit_plan_ids = #{limitPlanIds,jdbcType=VARCHAR},
+      started_at = #{startedAt,jdbcType=INTEGER},
+      ended_at = #{endedAt,jdbcType=INTEGER},
+      created_at = #{createdAt,jdbcType=INTEGER},
+      updated_at = #{updatedAt,jdbcType=INTEGER},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.ojbk.entity.V2Coupon" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into v2_coupon
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="value != null">
+        `value`,
+      </if>
+      <if test="limitUse != null">
+        limit_use,
+      </if>
+      <if test="limitUseWithUser != null">
+        limit_use_with_user,
+      </if>
+      <if test="limitPlanIds != null">
+        limit_plan_ids,
+      </if>
+      <if test="startedAt != null">
+        started_at,
+      </if>
+      <if test="endedAt != null">
+        ended_at,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=BOOLEAN},
+      </if>
+      <if test="value != null">
+        #{value,jdbcType=INTEGER},
+      </if>
+      <if test="limitUse != null">
+        #{limitUse,jdbcType=INTEGER},
+      </if>
+      <if test="limitUseWithUser != null">
+        #{limitUseWithUser,jdbcType=INTEGER},
+      </if>
+      <if test="limitPlanIds != null">
+        #{limitPlanIds,jdbcType=VARCHAR},
+      </if>
+      <if test="startedAt != null">
+        #{startedAt,jdbcType=INTEGER},
+      </if>
+      <if test="endedAt != null">
+        #{endedAt,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=INTEGER},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=INTEGER},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=BOOLEAN},
+      </if>
+      <if test="value != null">
+        `value` = #{value,jdbcType=INTEGER},
+      </if>
+      <if test="limitUse != null">
+        limit_use = #{limitUse,jdbcType=INTEGER},
+      </if>
+      <if test="limitUseWithUser != null">
+        limit_use_with_user = #{limitUseWithUser,jdbcType=INTEGER},
+      </if>
+      <if test="limitPlanIds != null">
+        limit_plan_ids = #{limitPlanIds,jdbcType=VARCHAR},
+      </if>
+      <if test="startedAt != null">
+        started_at = #{startedAt,jdbcType=INTEGER},
+      </if>
+      <if test="endedAt != null">
+        ended_at = #{endedAt,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=INTEGER},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

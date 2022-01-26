@@ -1,0 +1,1551 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ojbk.mappers.UserMapper">
+  <resultMap id="BaseResultMap" type="com.ojbk.entity.User">
+    <!--@mbg.generated-->
+    <!--@Table `user`-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="phone" jdbcType="BIGINT" property="phone" />
+    <result column="pass" jdbcType="VARCHAR" property="pass" />
+    <result column="passwd" jdbcType="VARCHAR" property="passwd" />
+    <result column="t" jdbcType="INTEGER" property="t" />
+    <result column="u" jdbcType="BIGINT" property="u" />
+    <result column="d" jdbcType="BIGINT" property="d" />
+    <result column="plan" jdbcType="VARCHAR" property="plan" />
+    <result column="transfer_enable" jdbcType="BIGINT" property="transferEnable" />
+    <result column="port" jdbcType="INTEGER" property="port" />
+    <result column="switch" jdbcType="TINYINT" property="switch2" />
+    <result column="enable" jdbcType="TINYINT" property="enable" />
+    <result column="last_detect_ban_time" jdbcType="TIMESTAMP" property="lastDetectBanTime" />
+    <result column="all_detect_number" jdbcType="INTEGER" property="allDetectNumber" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="last_get_gift_time" jdbcType="INTEGER" property="lastGetGiftTime" />
+    <result column="last_check_in_time" jdbcType="INTEGER" property="lastCheckInTime" />
+    <result column="last_rest_pass_time" jdbcType="INTEGER" property="lastRestPassTime" />
+    <result column="reg_date" jdbcType="TIMESTAMP" property="regDate" />
+    <result column="invite_num" jdbcType="INTEGER" property="inviteNum" />
+    <result column="money" jdbcType="DECIMAL" property="money" />
+    <result column="ref_by" jdbcType="INTEGER" property="refBy" />
+    <result column="expire_time" jdbcType="INTEGER" property="expireTime" />
+    <result column="method" jdbcType="VARCHAR" property="method" />
+    <result column="is_email_verify" jdbcType="TINYINT" property="isEmailVerify" />
+    <result column="reg_ip" jdbcType="VARCHAR" property="regIp" />
+    <result column="node_speedlimit" jdbcType="DECIMAL" property="nodeSpeedlimit" />
+    <result column="node_connector" jdbcType="INTEGER" property="nodeConnector" />
+    <result column="is_admin" jdbcType="INTEGER" property="isAdmin" />
+    <result column="im_type" jdbcType="INTEGER" property="imType" />
+    <result column="im_value" jdbcType="LONGVARCHAR" property="imValue" />
+    <result column="last_day_t" jdbcType="BIGINT" property="lastDayT" />
+    <result column="sendDailyMail" jdbcType="INTEGER" property="senddailymail" />
+    <result column="class" jdbcType="INTEGER" property="class2" />
+    <result column="class_expire" jdbcType="TIMESTAMP" property="classExpire" />
+    <result column="expire_in" jdbcType="TIMESTAMP" property="expireIn" />
+    <result column="theme" jdbcType="LONGVARCHAR" property="theme" />
+    <result column="ga_token" jdbcType="LONGVARCHAR" property="gaToken" />
+    <result column="ga_enable" jdbcType="INTEGER" property="gaEnable" />
+    <result column="pac" jdbcType="LONGVARCHAR" property="pac" />
+    <result column="remark" jdbcType="LONGVARCHAR" property="remark" />
+    <result column="node_group" jdbcType="INTEGER" property="nodeGroup" />
+    <result column="auto_reset_day" jdbcType="INTEGER" property="autoResetDay" />
+    <result column="auto_reset_bandwidth" jdbcType="DECIMAL" property="autoResetBandwidth" />
+    <result column="protocol" jdbcType="VARCHAR" property="protocol" />
+    <result column="protocol_param" jdbcType="VARCHAR" property="protocolParam" />
+    <result column="obfs" jdbcType="VARCHAR" property="obfs" />
+    <result column="obfs_param" jdbcType="VARCHAR" property="obfsParam" />
+    <result column="forbidden_ip" jdbcType="LONGVARCHAR" property="forbiddenIp" />
+    <result column="forbidden_port" jdbcType="LONGVARCHAR" property="forbiddenPort" />
+    <result column="disconnect_ip" jdbcType="LONGVARCHAR" property="disconnectIp" />
+    <result column="is_hide" jdbcType="INTEGER" property="isHide" />
+    <result column="is_multi_user" jdbcType="INTEGER" property="isMultiUser" />
+    <result column="telegram_id" jdbcType="BIGINT" property="telegramId" />
+    <result column="uuid" jdbcType="LONGVARCHAR" property="uuid" />
+    <result column="lang" jdbcType="VARCHAR" property="lang" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, user_name, email, phone, pass, passwd, t, u, d, `plan`, transfer_enable, port, 
+    switch, `enable`, last_detect_ban_time, all_detect_number, `type`, last_get_gift_time,
+    last_check_in_time, last_rest_pass_time, reg_date, invite_num, money, ref_by, expire_time, 
+    `method`, is_email_verify, reg_ip, node_speedlimit, node_connector, is_admin, im_type, 
+    im_value, last_day_t, sendDailyMail, `class`, class_expire, expire_in, theme, ga_token,
+    ga_enable, pac, remark, node_group, auto_reset_day, auto_reset_bandwidth, protocol, 
+    protocol_param, obfs, obfs_param, forbidden_ip, forbidden_port, disconnect_ip, is_hide, 
+    is_multi_user, telegram_id, uuid, lang
+  </sql>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update `user`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="user_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.userName,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="email = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.email,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="phone = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.phone,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="pass = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.pass,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="passwd = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.passwd,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="t = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.t,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="u = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.u,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="d = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.d,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="`plan` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.plan,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="transfer_enable = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.transferEnable,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="port = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.port,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="switch2 = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.switch2,jdbcType=TINYINT}
+        </foreach>
+      </trim>
+      <trim prefix="`enable` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.enable,jdbcType=TINYINT}
+        </foreach>
+      </trim>
+      <trim prefix="last_detect_ban_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.lastDetectBanTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="all_detect_number = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.allDetectNumber,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="`type` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.type,jdbcType=TINYINT}
+        </foreach>
+      </trim>
+      <trim prefix="last_get_gift_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.lastGetGiftTime,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="last_check_in_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.lastCheckInTime,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="last_rest_pass_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.lastRestPassTime,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="reg_date = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.regDate,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="invite_num = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.inviteNum,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="money = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.money,jdbcType=DECIMAL}
+        </foreach>
+      </trim>
+      <trim prefix="ref_by = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.refBy,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="expire_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.expireTime,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="`method` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.method,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="is_email_verify = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.isEmailVerify,jdbcType=TINYINT}
+        </foreach>
+      </trim>
+      <trim prefix="reg_ip = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.regIp,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="node_speedlimit = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.nodeSpeedlimit,jdbcType=DECIMAL}
+        </foreach>
+      </trim>
+      <trim prefix="node_connector = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.nodeConnector,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="is_admin = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.isAdmin,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="im_type = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.imType,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="im_value = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.imValue,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="last_day_t = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.lastDayT,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="sendDailyMail = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.senddailymail,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="`class2` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.class2,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="class_expire = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.classExpire,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="expire_in = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.expireIn,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="theme = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.theme,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="ga_token = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.gaToken,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="ga_enable = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.gaEnable,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="pac = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.pac,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="remark = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.remark,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="node_group = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.nodeGroup,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="auto_reset_day = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.autoResetDay,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="auto_reset_bandwidth = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.autoResetBandwidth,jdbcType=DECIMAL}
+        </foreach>
+      </trim>
+      <trim prefix="protocol = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.protocol,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="protocol_param = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.protocolParam,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="obfs = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.obfs,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="obfs_param = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.obfsParam,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="forbidden_ip = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.forbiddenIp,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="forbidden_port = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.forbiddenPort,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="disconnect_ip = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.disconnectIp,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="is_hide = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.isHide,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="is_multi_user = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.isMultiUser,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="telegram_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.telegramId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="uuid = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.uuid,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="lang = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.lang,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update `user`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="user_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.userName != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.userName,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="email = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.email != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.email,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="phone = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.phone != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.phone,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="pass = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.pass != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.pass,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="passwd = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.passwd != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.passwd,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="t = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.t != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.t,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="u = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.u != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.u,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="d = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.d != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.d,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`plan` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.plan != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.plan,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="transfer_enable = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.transferEnable != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.transferEnable,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="port = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.port != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.port,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="switch2 = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.switch2 != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.switch2,jdbcType=TINYINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`enable` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.enable != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.enable,jdbcType=TINYINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="last_detect_ban_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.lastDetectBanTime != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.lastDetectBanTime,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="all_detect_number = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.allDetectNumber != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.allDetectNumber,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`type` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.type != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.type,jdbcType=TINYINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="last_get_gift_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.lastGetGiftTime != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.lastGetGiftTime,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="last_check_in_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.lastCheckInTime != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.lastCheckInTime,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="last_rest_pass_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.lastRestPassTime != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.lastRestPassTime,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="reg_date = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.regDate != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.regDate,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="invite_num = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.inviteNum != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.inviteNum,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="money = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.money != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.money,jdbcType=DECIMAL}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="ref_by = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.refBy != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.refBy,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="expire_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.expireTime != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.expireTime,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`method` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.method != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.method,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="is_email_verify = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.isEmailVerify != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.isEmailVerify,jdbcType=TINYINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="reg_ip = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.regIp != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.regIp,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="node_speedlimit = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.nodeSpeedlimit != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.nodeSpeedlimit,jdbcType=DECIMAL}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="node_connector = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.nodeConnector != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.nodeConnector,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="is_admin = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.isAdmin != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.isAdmin,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="im_type = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.imType != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.imType,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="im_value = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.imValue != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.imValue,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="last_day_t = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.lastDayT != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.lastDayT,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="sendDailyMail = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.senddailymail != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.senddailymail,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`class2` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.class2 != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.class2,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="class_expire = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.classExpire != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.classExpire,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="expire_in = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.expireIn != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.expireIn,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="theme = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.theme != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.theme,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="ga_token = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.gaToken != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.gaToken,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="ga_enable = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.gaEnable != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.gaEnable,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="pac = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.pac != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.pac,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="remark = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.remark != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.remark,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="node_group = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.nodeGroup != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.nodeGroup,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="auto_reset_day = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.autoResetDay != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.autoResetDay,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="auto_reset_bandwidth = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.autoResetBandwidth != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.autoResetBandwidth,jdbcType=DECIMAL}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="protocol = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.protocol != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.protocol,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="protocol_param = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.protocolParam != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.protocolParam,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="obfs = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.obfs != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.obfs,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="obfs_param = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.obfsParam != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.obfsParam,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="forbidden_ip = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.forbiddenIp != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.forbiddenIp,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="forbidden_port = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.forbiddenPort != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.forbiddenPort,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="disconnect_ip = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.disconnectIp != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.disconnectIp,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="is_hide = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.isHide != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.isHide,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="is_multi_user = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.isMultiUser != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.isMultiUser,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="telegram_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.telegramId != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.telegramId,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="uuid = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.uuid != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.uuid,jdbcType=LONGVARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="lang = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.lang != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.lang,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into `user`
+    (user_name, email, phone, pass, passwd, t, u, d, `plan`, transfer_enable, port, switch,
+      `enable`, last_detect_ban_time, all_detect_number, `type`, last_get_gift_time, 
+      last_check_in_time, last_rest_pass_time, reg_date, invite_num, money, ref_by, expire_time, 
+      `method`, is_email_verify, reg_ip, node_speedlimit, node_connector, is_admin, im_type, 
+      im_value, last_day_t, sendDailyMail, `class`, class_expire, expire_in, theme, ga_token,
+      ga_enable, pac, remark, node_group, auto_reset_day, auto_reset_bandwidth, protocol, 
+      protocol_param, obfs, obfs_param, forbidden_ip, forbidden_port, disconnect_ip, 
+      is_hide, is_multi_user, telegram_id, uuid, lang)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.userName,jdbcType=VARCHAR}, #{item.email,jdbcType=VARCHAR}, #{item.phone,jdbcType=BIGINT}, 
+        #{item.pass,jdbcType=VARCHAR}, #{item.passwd,jdbcType=VARCHAR}, #{item.t,jdbcType=INTEGER}, 
+        #{item.u,jdbcType=BIGINT}, #{item.d,jdbcType=BIGINT}, #{item.plan,jdbcType=VARCHAR}, 
+        #{item.transferEnable,jdbcType=BIGINT}, #{item.port,jdbcType=INTEGER}, #{item.switch2,jdbcType=TINYINT}, 
+        #{item.enable,jdbcType=TINYINT}, #{item.lastDetectBanTime,jdbcType=TIMESTAMP}, 
+        #{item.allDetectNumber,jdbcType=INTEGER}, #{item.type,jdbcType=TINYINT}, #{item.lastGetGiftTime,jdbcType=INTEGER}, 
+        #{item.lastCheckInTime,jdbcType=INTEGER}, #{item.lastRestPassTime,jdbcType=INTEGER}, 
+        #{item.regDate,jdbcType=TIMESTAMP}, #{item.inviteNum,jdbcType=INTEGER}, #{item.money,jdbcType=DECIMAL}, 
+        #{item.refBy,jdbcType=INTEGER}, #{item.expireTime,jdbcType=INTEGER}, #{item.method,jdbcType=VARCHAR}, 
+        #{item.isEmailVerify,jdbcType=TINYINT}, #{item.regIp,jdbcType=VARCHAR}, #{item.nodeSpeedlimit,jdbcType=DECIMAL}, 
+        #{item.nodeConnector,jdbcType=INTEGER}, #{item.isAdmin,jdbcType=INTEGER}, #{item.imType,jdbcType=INTEGER}, 
+        #{item.imValue,jdbcType=LONGVARCHAR}, #{item.lastDayT,jdbcType=BIGINT}, #{item.senddailymail,jdbcType=INTEGER}, 
+        #{item.class2,jdbcType=INTEGER}, #{item.classExpire,jdbcType=TIMESTAMP}, #{item.expireIn,jdbcType=TIMESTAMP}, 
+        #{item.theme,jdbcType=LONGVARCHAR}, #{item.gaToken,jdbcType=LONGVARCHAR}, #{item.gaEnable,jdbcType=INTEGER}, 
+        #{item.pac,jdbcType=LONGVARCHAR}, #{item.remark,jdbcType=LONGVARCHAR}, #{item.nodeGroup,jdbcType=INTEGER}, 
+        #{item.autoResetDay,jdbcType=INTEGER}, #{item.autoResetBandwidth,jdbcType=DECIMAL}, 
+        #{item.protocol,jdbcType=VARCHAR}, #{item.protocolParam,jdbcType=VARCHAR}, #{item.obfs,jdbcType=VARCHAR}, 
+        #{item.obfsParam,jdbcType=VARCHAR}, #{item.forbiddenIp,jdbcType=LONGVARCHAR}, #{item.forbiddenPort,jdbcType=LONGVARCHAR}, 
+        #{item.disconnectIp,jdbcType=LONGVARCHAR}, #{item.isHide,jdbcType=INTEGER}, #{item.isMultiUser,jdbcType=INTEGER}, 
+        #{item.telegramId,jdbcType=BIGINT}, #{item.uuid,jdbcType=LONGVARCHAR}, #{item.lang,jdbcType=VARCHAR}
+        )
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.ojbk.entity.User" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into `user`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      user_name,
+      email,
+      phone,
+      pass,
+      passwd,
+      t,
+      u,
+      d,
+      `plan`,
+      transfer_enable,
+      port,
+      switch,
+      `enable`,
+      last_detect_ban_time,
+      all_detect_number,
+      `type`,
+      last_get_gift_time,
+      last_check_in_time,
+      last_rest_pass_time,
+      reg_date,
+      invite_num,
+      money,
+      ref_by,
+      expire_time,
+      `method`,
+      is_email_verify,
+      reg_ip,
+      node_speedlimit,
+      node_connector,
+      is_admin,
+      im_type,
+      im_value,
+      last_day_t,
+      sendDailyMail,
+      `class`,
+      class_expire,
+      expire_in,
+      theme,
+      ga_token,
+      ga_enable,
+      pac,
+      remark,
+      node_group,
+      auto_reset_day,
+      auto_reset_bandwidth,
+      protocol,
+      protocol_param,
+      obfs,
+      obfs_param,
+      forbidden_ip,
+      forbidden_port,
+      disconnect_ip,
+      is_hide,
+      is_multi_user,
+      telegram_id,
+      uuid,
+      lang,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      #{userName,jdbcType=VARCHAR},
+      #{email,jdbcType=VARCHAR},
+      #{phone,jdbcType=BIGINT},
+      #{pass,jdbcType=VARCHAR},
+      #{passwd,jdbcType=VARCHAR},
+      #{t,jdbcType=INTEGER},
+      #{u,jdbcType=BIGINT},
+      #{d,jdbcType=BIGINT},
+      #{plan,jdbcType=VARCHAR},
+      #{transferEnable,jdbcType=BIGINT},
+      #{port,jdbcType=INTEGER},
+      #{switch2,jdbcType=TINYINT},
+      #{enable,jdbcType=TINYINT},
+      #{lastDetectBanTime,jdbcType=TIMESTAMP},
+      #{allDetectNumber,jdbcType=INTEGER},
+      #{type,jdbcType=TINYINT},
+      #{lastGetGiftTime,jdbcType=INTEGER},
+      #{lastCheckInTime,jdbcType=INTEGER},
+      #{lastRestPassTime,jdbcType=INTEGER},
+      #{regDate,jdbcType=TIMESTAMP},
+      #{inviteNum,jdbcType=INTEGER},
+      #{money,jdbcType=DECIMAL},
+      #{refBy,jdbcType=INTEGER},
+      #{expireTime,jdbcType=INTEGER},
+      #{method,jdbcType=VARCHAR},
+      #{isEmailVerify,jdbcType=TINYINT},
+      #{regIp,jdbcType=VARCHAR},
+      #{nodeSpeedlimit,jdbcType=DECIMAL},
+      #{nodeConnector,jdbcType=INTEGER},
+      #{isAdmin,jdbcType=INTEGER},
+      #{imType,jdbcType=INTEGER},
+      #{imValue,jdbcType=LONGVARCHAR},
+      #{lastDayT,jdbcType=BIGINT},
+      #{senddailymail,jdbcType=INTEGER},
+      #{class2,jdbcType=INTEGER},
+      #{classExpire,jdbcType=TIMESTAMP},
+      #{expireIn,jdbcType=TIMESTAMP},
+      #{theme,jdbcType=LONGVARCHAR},
+      #{gaToken,jdbcType=LONGVARCHAR},
+      #{gaEnable,jdbcType=INTEGER},
+      #{pac,jdbcType=LONGVARCHAR},
+      #{remark,jdbcType=LONGVARCHAR},
+      #{nodeGroup,jdbcType=INTEGER},
+      #{autoResetDay,jdbcType=INTEGER},
+      #{autoResetBandwidth,jdbcType=DECIMAL},
+      #{protocol,jdbcType=VARCHAR},
+      #{protocolParam,jdbcType=VARCHAR},
+      #{obfs,jdbcType=VARCHAR},
+      #{obfsParam,jdbcType=VARCHAR},
+      #{forbiddenIp,jdbcType=LONGVARCHAR},
+      #{forbiddenPort,jdbcType=LONGVARCHAR},
+      #{disconnectIp,jdbcType=LONGVARCHAR},
+      #{isHide,jdbcType=INTEGER},
+      #{isMultiUser,jdbcType=INTEGER},
+      #{telegramId,jdbcType=BIGINT},
+      #{uuid,jdbcType=LONGVARCHAR},
+      #{lang,jdbcType=VARCHAR},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      user_name = #{userName,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=BIGINT},
+      pass = #{pass,jdbcType=VARCHAR},
+      passwd = #{passwd,jdbcType=VARCHAR},
+      t = #{t,jdbcType=INTEGER},
+      u = #{u,jdbcType=BIGINT},
+      d = #{d,jdbcType=BIGINT},
+      `plan` = #{plan,jdbcType=VARCHAR},
+      transfer_enable = #{transferEnable,jdbcType=BIGINT},
+      port = #{port,jdbcType=INTEGER},
+      switch = #{switch2,jdbcType=TINYINT},
+      `enable` = #{enable,jdbcType=TINYINT},
+      last_detect_ban_time = #{lastDetectBanTime,jdbcType=TIMESTAMP},
+      all_detect_number = #{allDetectNumber,jdbcType=INTEGER},
+      `type` = #{type,jdbcType=TINYINT},
+      last_get_gift_time = #{lastGetGiftTime,jdbcType=INTEGER},
+      last_check_in_time = #{lastCheckInTime,jdbcType=INTEGER},
+      last_rest_pass_time = #{lastRestPassTime,jdbcType=INTEGER},
+      reg_date = #{regDate,jdbcType=TIMESTAMP},
+      invite_num = #{inviteNum,jdbcType=INTEGER},
+      money = #{money,jdbcType=DECIMAL},
+      ref_by = #{refBy,jdbcType=INTEGER},
+      expire_time = #{expireTime,jdbcType=INTEGER},
+      `method` = #{method,jdbcType=VARCHAR},
+      is_email_verify = #{isEmailVerify,jdbcType=TINYINT},
+      reg_ip = #{regIp,jdbcType=VARCHAR},
+      node_speedlimit = #{nodeSpeedlimit,jdbcType=DECIMAL},
+      node_connector = #{nodeConnector,jdbcType=INTEGER},
+      is_admin = #{isAdmin,jdbcType=INTEGER},
+      im_type = #{imType,jdbcType=INTEGER},
+      im_value = #{imValue,jdbcType=LONGVARCHAR},
+      last_day_t = #{lastDayT,jdbcType=BIGINT},
+      sendDailyMail = #{senddailymail,jdbcType=INTEGER},
+      `class` = #{class2,jdbcType=INTEGER},
+      class_expire = #{classExpire,jdbcType=TIMESTAMP},
+      expire_in = #{expireIn,jdbcType=TIMESTAMP},
+      theme = #{theme,jdbcType=LONGVARCHAR},
+      ga_token = #{gaToken,jdbcType=LONGVARCHAR},
+      ga_enable = #{gaEnable,jdbcType=INTEGER},
+      pac = #{pac,jdbcType=LONGVARCHAR},
+      remark = #{remark,jdbcType=LONGVARCHAR},
+      node_group = #{nodeGroup,jdbcType=INTEGER},
+      auto_reset_day = #{autoResetDay,jdbcType=INTEGER},
+      auto_reset_bandwidth = #{autoResetBandwidth,jdbcType=DECIMAL},
+      protocol = #{protocol,jdbcType=VARCHAR},
+      protocol_param = #{protocolParam,jdbcType=VARCHAR},
+      obfs = #{obfs,jdbcType=VARCHAR},
+      obfs_param = #{obfsParam,jdbcType=VARCHAR},
+      forbidden_ip = #{forbiddenIp,jdbcType=LONGVARCHAR},
+      forbidden_port = #{forbiddenPort,jdbcType=LONGVARCHAR},
+      disconnect_ip = #{disconnectIp,jdbcType=LONGVARCHAR},
+      is_hide = #{isHide,jdbcType=INTEGER},
+      is_multi_user = #{isMultiUser,jdbcType=INTEGER},
+      telegram_id = #{telegramId,jdbcType=BIGINT},
+      uuid = #{uuid,jdbcType=LONGVARCHAR},
+      lang = #{lang,jdbcType=VARCHAR},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.ojbk.entity.User" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into `user`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="pass != null">
+        pass,
+      </if>
+      <if test="passwd != null">
+        passwd,
+      </if>
+      <if test="t != null">
+        t,
+      </if>
+      <if test="u != null">
+        u,
+      </if>
+      <if test="d != null">
+        d,
+      </if>
+      <if test="plan != null">
+        `plan`,
+      </if>
+      <if test="transferEnable != null">
+        transfer_enable,
+      </if>
+      <if test="port != null">
+        port,
+      </if>
+      <if test="switch2 != null">
+        switch,
+      </if>
+      <if test="enable != null">
+        `enable`,
+      </if>
+      <if test="lastDetectBanTime != null">
+        last_detect_ban_time,
+      </if>
+      <if test="allDetectNumber != null">
+        all_detect_number,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="lastGetGiftTime != null">
+        last_get_gift_time,
+      </if>
+      <if test="lastCheckInTime != null">
+        last_check_in_time,
+      </if>
+      <if test="lastRestPassTime != null">
+        last_rest_pass_time,
+      </if>
+      <if test="regDate != null">
+        reg_date,
+      </if>
+      <if test="inviteNum != null">
+        invite_num,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+      <if test="refBy != null">
+        ref_by,
+      </if>
+      <if test="expireTime != null">
+        expire_time,
+      </if>
+      <if test="method != null">
+        `method`,
+      </if>
+      <if test="isEmailVerify != null">
+        is_email_verify,
+      </if>
+      <if test="regIp != null">
+        reg_ip,
+      </if>
+      <if test="nodeSpeedlimit != null">
+        node_speedlimit,
+      </if>
+      <if test="nodeConnector != null">
+        node_connector,
+      </if>
+      <if test="isAdmin != null">
+        is_admin,
+      </if>
+      <if test="imType != null">
+        im_type,
+      </if>
+      <if test="imValue != null">
+        im_value,
+      </if>
+      <if test="lastDayT != null">
+        last_day_t,
+      </if>
+      <if test="senddailymail != null">
+        sendDailyMail,
+      </if>
+      <if test="class2 != null">
+        `class`,
+      </if>
+      <if test="classExpire != null">
+        class_expire,
+      </if>
+      <if test="expireIn != null">
+        expire_in,
+      </if>
+      <if test="theme != null">
+        theme,
+      </if>
+      <if test="gaToken != null">
+        ga_token,
+      </if>
+      <if test="gaEnable != null">
+        ga_enable,
+      </if>
+      <if test="pac != null">
+        pac,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="nodeGroup != null">
+        node_group,
+      </if>
+      <if test="autoResetDay != null">
+        auto_reset_day,
+      </if>
+      <if test="autoResetBandwidth != null">
+        auto_reset_bandwidth,
+      </if>
+      <if test="protocol != null">
+        protocol,
+      </if>
+      <if test="protocolParam != null">
+        protocol_param,
+      </if>
+      <if test="obfs != null">
+        obfs,
+      </if>
+      <if test="obfsParam != null">
+        obfs_param,
+      </if>
+      <if test="forbiddenIp != null">
+        forbidden_ip,
+      </if>
+      <if test="forbiddenPort != null">
+        forbidden_port,
+      </if>
+      <if test="disconnectIp != null">
+        disconnect_ip,
+      </if>
+      <if test="isHide != null">
+        is_hide,
+      </if>
+      <if test="isMultiUser != null">
+        is_multi_user,
+      </if>
+      <if test="telegramId != null">
+        telegram_id,
+      </if>
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="lang != null">
+        lang,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=BIGINT},
+      </if>
+      <if test="pass != null">
+        #{pass,jdbcType=VARCHAR},
+      </if>
+      <if test="passwd != null">
+        #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="t != null">
+        #{t,jdbcType=INTEGER},
+      </if>
+      <if test="u != null">
+        #{u,jdbcType=BIGINT},
+      </if>
+      <if test="d != null">
+        #{d,jdbcType=BIGINT},
+      </if>
+      <if test="plan != null">
+        #{plan,jdbcType=VARCHAR},
+      </if>
+      <if test="transferEnable != null">
+        #{transferEnable,jdbcType=BIGINT},
+      </if>
+      <if test="port != null">
+        #{port,jdbcType=INTEGER},
+      </if>
+      <if test="switch2 != null">
+        #{switch2,jdbcType=TINYINT},
+      </if>
+      <if test="enable != null">
+        #{enable,jdbcType=TINYINT},
+      </if>
+      <if test="lastDetectBanTime != null">
+        #{lastDetectBanTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="allDetectNumber != null">
+        #{allDetectNumber,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="lastGetGiftTime != null">
+        #{lastGetGiftTime,jdbcType=INTEGER},
+      </if>
+      <if test="lastCheckInTime != null">
+        #{lastCheckInTime,jdbcType=INTEGER},
+      </if>
+      <if test="lastRestPassTime != null">
+        #{lastRestPassTime,jdbcType=INTEGER},
+      </if>
+      <if test="regDate != null">
+        #{regDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inviteNum != null">
+        #{inviteNum,jdbcType=INTEGER},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="refBy != null">
+        #{refBy,jdbcType=INTEGER},
+      </if>
+      <if test="expireTime != null">
+        #{expireTime,jdbcType=INTEGER},
+      </if>
+      <if test="method != null">
+        #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="isEmailVerify != null">
+        #{isEmailVerify,jdbcType=TINYINT},
+      </if>
+      <if test="regIp != null">
+        #{regIp,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeSpeedlimit != null">
+        #{nodeSpeedlimit,jdbcType=DECIMAL},
+      </if>
+      <if test="nodeConnector != null">
+        #{nodeConnector,jdbcType=INTEGER},
+      </if>
+      <if test="isAdmin != null">
+        #{isAdmin,jdbcType=INTEGER},
+      </if>
+      <if test="imType != null">
+        #{imType,jdbcType=INTEGER},
+      </if>
+      <if test="imValue != null">
+        #{imValue,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="lastDayT != null">
+        #{lastDayT,jdbcType=BIGINT},
+      </if>
+      <if test="senddailymail != null">
+        #{senddailymail,jdbcType=INTEGER},
+      </if>
+      <if test="class2 != null">
+        #{class2,jdbcType=INTEGER},
+      </if>
+      <if test="classExpire != null">
+        #{classExpire,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expireIn != null">
+        #{expireIn,jdbcType=TIMESTAMP},
+      </if>
+      <if test="theme != null">
+        #{theme,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="gaToken != null">
+        #{gaToken,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="gaEnable != null">
+        #{gaEnable,jdbcType=INTEGER},
+      </if>
+      <if test="pac != null">
+        #{pac,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="nodeGroup != null">
+        #{nodeGroup,jdbcType=INTEGER},
+      </if>
+      <if test="autoResetDay != null">
+        #{autoResetDay,jdbcType=INTEGER},
+      </if>
+      <if test="autoResetBandwidth != null">
+        #{autoResetBandwidth,jdbcType=DECIMAL},
+      </if>
+      <if test="protocol != null">
+        #{protocol,jdbcType=VARCHAR},
+      </if>
+      <if test="protocolParam != null">
+        #{protocolParam,jdbcType=VARCHAR},
+      </if>
+      <if test="obfs != null">
+        #{obfs,jdbcType=VARCHAR},
+      </if>
+      <if test="obfsParam != null">
+        #{obfsParam,jdbcType=VARCHAR},
+      </if>
+      <if test="forbiddenIp != null">
+        #{forbiddenIp,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="forbiddenPort != null">
+        #{forbiddenPort,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="disconnectIp != null">
+        #{disconnectIp,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="isHide != null">
+        #{isHide,jdbcType=INTEGER},
+      </if>
+      <if test="isMultiUser != null">
+        #{isMultiUser,jdbcType=INTEGER},
+      </if>
+      <if test="telegramId != null">
+        #{telegramId,jdbcType=BIGINT},
+      </if>
+      <if test="uuid != null">
+        #{uuid,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="lang != null">
+        #{lang,jdbcType=VARCHAR},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=BIGINT},
+      </if>
+      <if test="pass != null">
+        pass = #{pass,jdbcType=VARCHAR},
+      </if>
+      <if test="passwd != null">
+        passwd = #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="t != null">
+        t = #{t,jdbcType=INTEGER},
+      </if>
+      <if test="u != null">
+        u = #{u,jdbcType=BIGINT},
+      </if>
+      <if test="d != null">
+        d = #{d,jdbcType=BIGINT},
+      </if>
+      <if test="plan != null">
+        `plan` = #{plan,jdbcType=VARCHAR},
+      </if>
+      <if test="transferEnable != null">
+        transfer_enable = #{transferEnable,jdbcType=BIGINT},
+      </if>
+      <if test="port != null">
+        port = #{port,jdbcType=INTEGER},
+      </if>
+      <if test="switch2 != null">
+        switch = #{switch2,jdbcType=TINYINT},
+      </if>
+      <if test="enable != null">
+        `enable` = #{enable,jdbcType=TINYINT},
+      </if>
+      <if test="lastDetectBanTime != null">
+        last_detect_ban_time = #{lastDetectBanTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="allDetectNumber != null">
+        all_detect_number = #{allDetectNumber,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="lastGetGiftTime != null">
+        last_get_gift_time = #{lastGetGiftTime,jdbcType=INTEGER},
+      </if>
+      <if test="lastCheckInTime != null">
+        last_check_in_time = #{lastCheckInTime,jdbcType=INTEGER},
+      </if>
+      <if test="lastRestPassTime != null">
+        last_rest_pass_time = #{lastRestPassTime,jdbcType=INTEGER},
+      </if>
+      <if test="regDate != null">
+        reg_date = #{regDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inviteNum != null">
+        invite_num = #{inviteNum,jdbcType=INTEGER},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="refBy != null">
+        ref_by = #{refBy,jdbcType=INTEGER},
+      </if>
+      <if test="expireTime != null">
+        expire_time = #{expireTime,jdbcType=INTEGER},
+      </if>
+      <if test="method != null">
+        `method` = #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="isEmailVerify != null">
+        is_email_verify = #{isEmailVerify,jdbcType=TINYINT},
+      </if>
+      <if test="regIp != null">
+        reg_ip = #{regIp,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeSpeedlimit != null">
+        node_speedlimit = #{nodeSpeedlimit,jdbcType=DECIMAL},
+      </if>
+      <if test="nodeConnector != null">
+        node_connector = #{nodeConnector,jdbcType=INTEGER},
+      </if>
+      <if test="isAdmin != null">
+        is_admin = #{isAdmin,jdbcType=INTEGER},
+      </if>
+      <if test="imType != null">
+        im_type = #{imType,jdbcType=INTEGER},
+      </if>
+      <if test="imValue != null">
+        im_value = #{imValue,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="lastDayT != null">
+        last_day_t = #{lastDayT,jdbcType=BIGINT},
+      </if>
+      <if test="senddailymail != null">
+        sendDailyMail = #{senddailymail,jdbcType=INTEGER},
+      </if>
+      <if test="class2 != null">
+        `class` = #{class2,jdbcType=INTEGER},
+      </if>
+      <if test="classExpire != null">
+        class_expire = #{classExpire,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expireIn != null">
+        expire_in = #{expireIn,jdbcType=TIMESTAMP},
+      </if>
+      <if test="theme != null">
+        theme = #{theme,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="gaToken != null">
+        ga_token = #{gaToken,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="gaEnable != null">
+        ga_enable = #{gaEnable,jdbcType=INTEGER},
+      </if>
+      <if test="pac != null">
+        pac = #{pac,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="nodeGroup != null">
+        node_group = #{nodeGroup,jdbcType=INTEGER},
+      </if>
+      <if test="autoResetDay != null">
+        auto_reset_day = #{autoResetDay,jdbcType=INTEGER},
+      </if>
+      <if test="autoResetBandwidth != null">
+        auto_reset_bandwidth = #{autoResetBandwidth,jdbcType=DECIMAL},
+      </if>
+      <if test="protocol != null">
+        protocol = #{protocol,jdbcType=VARCHAR},
+      </if>
+      <if test="protocolParam != null">
+        protocol_param = #{protocolParam,jdbcType=VARCHAR},
+      </if>
+      <if test="obfs != null">
+        obfs = #{obfs,jdbcType=VARCHAR},
+      </if>
+      <if test="obfsParam != null">
+        obfs_param = #{obfsParam,jdbcType=VARCHAR},
+      </if>
+      <if test="forbiddenIp != null">
+        forbidden_ip = #{forbiddenIp,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="forbiddenPort != null">
+        forbidden_port = #{forbiddenPort,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="disconnectIp != null">
+        disconnect_ip = #{disconnectIp,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="isHide != null">
+        is_hide = #{isHide,jdbcType=INTEGER},
+      </if>
+      <if test="isMultiUser != null">
+        is_multi_user = #{isMultiUser,jdbcType=INTEGER},
+      </if>
+      <if test="telegramId != null">
+        telegram_id = #{telegramId,jdbcType=BIGINT},
+      </if>
+      <if test="uuid != null">
+        uuid = #{uuid,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="lang != null">
+        lang = #{lang,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="queryAllUser" resultMap="BaseResultMap">
+    select * from user
+  </select>
+
+  <select id="countUser" resultType="int">
+    select count(*) from user;
+    </select>
+</mapper>
