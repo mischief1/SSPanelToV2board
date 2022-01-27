@@ -83,6 +83,7 @@ public class SSPanelToV2boardController {
         //转换order表
         int BoughtTable = boughtService.ConversionBoughtTable();
         map.put("转换bought表数量：",BoughtTable);
+        map.put("总共转换记录数：",userTable + couponTable + SsInviteCodeTable + BoughtTable);
         return map;
     }
 }
