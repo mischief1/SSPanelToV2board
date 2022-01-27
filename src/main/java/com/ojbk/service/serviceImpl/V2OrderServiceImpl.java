@@ -53,4 +53,10 @@ public class V2OrderServiceImpl extends ServiceImpl<V2OrderMapper, V2Order> impl
     public void insert(V2Order v2Order) {
         v2OrderMapper.insert(v2Order);
     }
+
+    @Override
+    @DS("v2board")
+    public void truncateTable() {
+        v2OrderMapper.truncateTable();
+    }
 }

@@ -17,4 +17,6 @@ public interface V2OrderMapper extends BaseMapper<V2Order> {
     int insertOrUpdate(V2Order record);
 
     int insertOrUpdateSelective(V2Order record);
+
+    void truncateTable();
 }

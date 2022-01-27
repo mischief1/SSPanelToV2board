@@ -19,4 +19,6 @@ public interface V2OrderService extends IService<V2Order>{
     void delete();
 
     void insert(V2Order v2Order);
+
+    void truncateTable();
 }

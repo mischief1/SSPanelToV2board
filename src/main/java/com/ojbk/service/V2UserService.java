@@ -16,7 +16,10 @@ public interface V2UserService extends IService<V2User>{
 
     int insertOrUpdateSelective(V2User record);
 
-    void deleteall();
+    void deleteAll();
 
     void insert(V2User v2User);
+
+    void truncateTable();
+
 }

@@ -53,16 +53,19 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public int ConversionUserTable() {
         //开始执行首先清空v2_user表
         deleteV2boardUserTable();
-        //查询user表记录数
-        int renShu = userMapper.countUser();
+        //查询所有用户
+        List<User> userList = userMapper.queryAllUser();
+        Integer renShu = null;
+        if (userList.size() > 0){
+            //user表记录数
+            renShu = (int)userList.stream().count();
+        }
         System.out.println("待转换人数："+renShu);
         int count = 0;
         //数组序号
         int i = 0;
         //生成随机toekn数组
         String[] randomStringArray = getRandomStringArray(32,renShu);
-        //查询所有用户
-        List<User> userList = userMapper.queryAllUser();
         //查询所有用户购买记录
         QueryWrapper<Bought> queryWrapper = new QueryWrapper<>();
         List<Bought> boughtList = boughtMapper.selectList(queryWrapper);
@@ -214,7 +217,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     public void deleteV2boardUserTable(){
-        v2UserService.deleteall();
+        v2UserService.truncateTable();
     }
 
     public void insertV2boardUserTable(List<V2User> v2UserList){

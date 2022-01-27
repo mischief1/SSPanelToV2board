@@ -361,4 +361,8 @@
       </if>
     </trim>
   </insert>
+
+  <update id="truncateTable">
+    truncate table v2_coupon
+    </update>
 </mapper>

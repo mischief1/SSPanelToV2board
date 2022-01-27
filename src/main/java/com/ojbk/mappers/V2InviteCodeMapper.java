@@ -17,4 +17,6 @@ public interface V2InviteCodeMapper extends BaseMapper<V2InviteCode> {
     int insertOrUpdate(V2InviteCode record);
 
     int insertOrUpdateSelective(V2InviteCode record);
+
+    void truncateTable();
 }

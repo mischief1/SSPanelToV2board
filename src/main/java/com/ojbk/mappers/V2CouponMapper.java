@@ -17,4 +17,6 @@ public interface V2CouponMapper extends BaseMapper<V2Coupon> {
     int insertOrUpdate(V2Coupon record);
 
     int insertOrUpdateSelective(V2Coupon record);
+
+    void truncateTable();
 }

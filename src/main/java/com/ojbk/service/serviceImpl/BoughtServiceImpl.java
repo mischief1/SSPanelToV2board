@@ -217,7 +217,7 @@ public class BoughtServiceImpl extends ServiceImpl<BoughtMapper, Bought> impleme
     }
 
     public void deleteV2boardOrderTable(){
-        v2OrderService.delete();
+        v2OrderService.truncateTable();
     }
 
     public void insertV2boardOrderTable(List<V2Order> v2OrderList){

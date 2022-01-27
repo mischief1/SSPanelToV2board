@@ -19,4 +19,7 @@ public interface V2CouponService extends IService<V2Coupon>{
     void delete();
 
     void insert(V2Coupon v2Coupon);
+
+    void truncateTable();
+
 }

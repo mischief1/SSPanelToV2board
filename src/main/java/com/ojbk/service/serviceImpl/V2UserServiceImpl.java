@@ -1,6 +1,7 @@
 package com.ojbk.service.serviceImpl;
 
 import com.baomidou.dynamic.datasource.annotation.DS;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,13 +42,19 @@ public class V2UserServiceImpl extends ServiceImpl<V2UserMapper, V2User> impleme
 
     @Override
     @DS("v2board")
-    public void deleteall() {
-        v2UserMapper.deleteall();
+    public void deleteAll() {
+        v2UserMapper.deleteAll();
     }
 
     @Override
     @DS("v2board")
     public void insert(V2User v2User) {
         v2UserMapper.insert(v2User);
+    }
+
+    @Override
+    @DS("v2board")
+    public void truncateTable() {
+        v2UserMapper.truncateTable();
     }
 }

@@ -19,4 +19,6 @@ public interface V2InviteCodeService extends IService<V2InviteCode>{
     void delete();
 
     void insert(V2InviteCode v2InviteCode);
+
+    void truncateTable();
 }

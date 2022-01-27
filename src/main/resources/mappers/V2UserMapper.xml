@@ -853,4 +853,8 @@
   <delete id="deleteall">
     delete from v2_user
     </delete>
+
+  <update id="truncateTable">
+    truncate table v2_user
+    </update>
 </mapper>

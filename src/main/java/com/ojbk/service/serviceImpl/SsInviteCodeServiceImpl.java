@@ -80,7 +80,7 @@ public class SsInviteCodeServiceImpl extends ServiceImpl<SsInviteCodeMapper, SsI
     }
 
     public void deleteV2InviteCodeTable(){
-        v2InviteCodeService.delete();
+        v2InviteCodeService.truncateTable();
     }
 
     public void insertV2InviteCodeTable(List<V2InviteCode> v2InviteCodeList){

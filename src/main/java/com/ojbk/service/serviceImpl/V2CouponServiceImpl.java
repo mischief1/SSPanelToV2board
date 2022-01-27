@@ -53,4 +53,10 @@ public class V2CouponServiceImpl extends ServiceImpl<V2CouponMapper, V2Coupon> i
     public void insert(V2Coupon v2Coupon) {
         v2CouponMapper.insert(v2Coupon);
     }
+
+    @Override
+    @DS("v2board")
+    public void truncateTable() {
+        v2CouponMapper.truncateTable();
+    }
 }

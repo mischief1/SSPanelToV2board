@@ -89,7 +89,7 @@ public class CouponServiceImpl extends ServiceImpl<CouponMapper, Coupon> impleme
     }
 
     public void deleteV2boardCouponTable(){
-        v2CouponService.delete();
+        v2CouponService.truncateTable();
     }
 
     public void insertV2boardCouponTable(List<V2Coupon> v2CouponList){

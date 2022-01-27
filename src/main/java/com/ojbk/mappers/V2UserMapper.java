@@ -18,5 +18,7 @@ public interface V2UserMapper extends BaseMapper<V2User> {
 
     int insertOrUpdateSelective(V2User record);
 
-    void deleteall();
+    void deleteAll();
+
+    void truncateTable();
 }

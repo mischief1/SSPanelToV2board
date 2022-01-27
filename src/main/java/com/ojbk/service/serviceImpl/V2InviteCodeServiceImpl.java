@@ -52,4 +52,10 @@ public class V2InviteCodeServiceImpl extends ServiceImpl<V2InviteCodeMapper, V2I
     public void insert(V2InviteCode v2InviteCode) {
         v2InviteCodeMapper.insert(v2InviteCode);
     }
+
+    @Override
+    @DS("v2board")
+    public void truncateTable() {
+        v2InviteCodeMapper.truncateTable();
+    }
 }
