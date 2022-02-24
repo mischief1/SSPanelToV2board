@@ -2,8 +2,8 @@
 SSPanel数据库转换为V2board数据库
 
 ## 运行环境:
-- JDK 1.8
-- maven 3.8.2
+- JDK 11
+- maven 3.8.1
 
 ## 数据源配置：
 - 修改application.yml配置文件：
